@@ -21,8 +21,8 @@ Ext.define( 'chords.view.song.songSingle', {
 
 
         config: {
-            scrollable: 'vertical',
-            tpl:        ['<pre>{chords}</pre>']
+            scrollable: 'both',
+            tpl:        ['<pre class = "song chords">{chords}</pre>']
         }
     }
 );

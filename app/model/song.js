@@ -49,8 +49,10 @@ Ext.define( 'chords.model.song', {
                     for( var i = 0, l = lines.length; i < l; i++ ) {
                         if( lines[i].match( chordsOnlyRegex ) ) {
                             lines[i] = lines[i].replace( chordsRegexp, "<span class = 'chord'>$1</span>" )
+                            chords += '<p class = "chords-line">' + lines[i] + '</p>';
+                        } else {
+                            chords += '<p class = "text-line">' + lines[i] + '</p>';
                         }
-                        chords += "<p>" + lines[i] + "</p>";
                     }
 
                     return  chords;
