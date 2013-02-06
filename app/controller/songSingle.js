@@ -29,6 +29,7 @@ Ext.define( 'chords.controller.songSingle', {
         for( var i = 0, l = index.length; i < l; i++ ) {
             reverseIndex[index[i]] = i;
         }
+        reverseIndex['A#'] = "B";
         return function ( chord, steps ) {
             var note = chord.match( /[A-H]\#?/ );
             if( !note || typeof reverseIndex[note] === "undefined" ) {
