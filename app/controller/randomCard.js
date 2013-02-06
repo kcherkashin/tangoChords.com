@@ -28,13 +28,30 @@ Ext.define( 'chords.controller.randomCard', {
             this.getCarousel().add( song );
         }
     },
-
+    /**
+     * Adds new pages to the carousel if necessary.
+     *
+     *
+     * @param card
+     * @param newItem
+     */
     updateCarousel: function ( card, newItem ) {
-        if( newItem.id ) {
+        /**
+         * This function can be caused by two different event.
+         * It it's caused by updating active song, we should update the title in the navigation bar.
+         *
+         * For the phone we don't update title, because navigation bar is too small.
+         */
+        if( newItem.id && Ext.os.deviceType !== "Phone" ) {
+
             this.getToolbar().setTitle( newItem.getRecord().getTitle() );
+
         }
 
         var carousel = this.getCarousel();
+        /**
+         * If we're on the last page, try adding another one if possible.
+         */
         if( carousel.getMaxItemIndex() === carousel.getActiveIndex() ) {
             this.pushRandomSong()
         }

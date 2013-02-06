@@ -22,7 +22,11 @@ Ext.define( 'chords.view.song.songSingle', {
 
         config: {
             scrollable: 'both',
-            tpl:        ['<pre class = "info song chords">{chords}</pre>']
+            tpl:        [
+                Ext.os.deviceType == "Phone" ? '<h1>{performer} - {name}</h1>' : "",
+                '<pre class = "info song chords">{chords}</pre>',
+                '<a href="{source}#">{source}</a>'
+            ]
         }
     }
 );
