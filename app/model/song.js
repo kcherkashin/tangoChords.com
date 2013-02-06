@@ -38,7 +38,7 @@ Ext.define( 'chords.model.song', {
                     /**
                      *  This regex is used to match and replace chords.
                      */
-                    var chordsRegexp = new RegExp( "\\b(" + chordBase + ")\\b", "g" );
+                    var chordsRegexp = new RegExp( "\\b(" + chordBase + ")\\s", "g" );
 
 
                     var lines = text.split( /[\n\r]/ );
