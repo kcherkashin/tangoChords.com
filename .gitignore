@@ -1,7 +1,7 @@
 .idea/
 .sencha/
 touch/
-resources/
+
 app.json
 build.xml
 
@@ -17,3 +17,5 @@ Icon?
 ehthumbs.db
 Thumbs.db
 .gitignore
+build/
+archive/
