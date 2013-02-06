@@ -23,9 +23,15 @@ Ext.define( 'chords.view.song.songSingle', {
         config: {
             scrollable: 'both',
             tpl:        [
+                '<pre class = "info song chords">',
+            /**
+             * For phones we want to move the title out of the navigation bar.
+             */
                 Ext.os.deviceType == "Phone" ? '<h1>{performer} - {name}</h1>' : "",
-                '<pre class = "info song chords">{chords}</pre>',
-                '<a href="{source}#">{source}</a>'
+                '{chords}',
+                '<a href="{source}#">{source}</a>',
+
+                '</pre>'
             ]
         }
     }

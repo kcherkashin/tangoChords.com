@@ -37,10 +37,10 @@ Ext.define( 'chords.controller.randomCard', {
      */
     updateCarousel: function ( card, newItem ) {
         /**
-         * This function can be caused by two different event.
-         * It it's caused by updating active song, we should update the title in the navigation bar.
+         * This function can be fired by two different event.
+         * If it's fired by updating active song, we should update the title in the navigation bar.
          *
-         * For the phone we don't update title, because navigation bar is too small.
+         * For the Phone we don't update title, because navigation bar is too small. We'll just move it inline.
          */
         if( newItem.id && Ext.os.deviceType !== "Phone" ) {
 

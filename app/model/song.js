@@ -11,7 +11,7 @@ Ext.define( 'chords.model.song', {
 
     config: {
         fields: [
-            "id", "name", "genre", "performer", "words", "text",
+            "id", "name", "genre", "performer", "words", "text", "source",
         /**
          * Chords field contains text with all the chords highlighted.
          */
