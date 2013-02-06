@@ -7,10 +7,10 @@
 "use strict";
 
 var random = Ext.define( 'chords.view.random.randomCard', {
-    extend: 'Ext.Panel',
-    xtype:  'randomcard',
-
-    config: {
+    extend:  'Ext.Panel',
+    xtype:   'randomcard',
+    require: ['Ext.carousel.Carousel'],
+    config:  {
         layout: 'vbox',
         tab:    {
             title:   'Random song',

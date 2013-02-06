@@ -21,22 +21,43 @@ Ext.define( 'chords.controller.songSingle', {
         }
     },
 
-
+    /**
+     * Transposes chord.
+     * C -> C#
+     * C#m -> D
+     *
+     * This is a real basic function, which doesn't know anything about tonalities and bemols.
+     *
+     *
+     */
     transposeChord: (function () {
 
-        var index = ["A", "B", "H", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
+        /**
+         * We need this index to figure out which note comes after which.
+         */
+        var noteIndex = ["A", "B", "H", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
+
+        /**
+         * We need this index to find position of the note.
+         */
         var reverseIndex = {};
-        for( var i = 0, l = index.length; i < l; i++ ) {
-            reverseIndex[index[i]] = i;
+        for( var i = 0, l = noteIndex.length; i < l; i++ ) {
+            reverseIndex[noteIndex[i]] = i;
         }
+
+        /**
+         * Some synonyms also go here.
+         */
         reverseIndex['A#'] = "B";
+
+
         return function ( chord, steps ) {
             var note = chord.match( /[A-H]\#?/ );
             if( !note || typeof reverseIndex[note] === "undefined" ) {
                 return "Can't transpose chord '" + chord + "'";
             }
             var newIndex = (reverseIndex[note] + steps + 12) % 12;
-            return chord.replace( note, index[ newIndex ] );
+            return chord.replace( note, noteIndex[ newIndex ] );
         }
     }()),
 

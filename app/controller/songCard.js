@@ -87,7 +87,7 @@ Ext.define( 'chords.controller.songCard', {
     },
 
 
-    
+
     clearFilter: function () {
         Ext.getStore( 'songs' ).clearFilter();
     },
