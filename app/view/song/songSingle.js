@@ -29,8 +29,7 @@ Ext.define( 'chords.view.song.songSingle', {
              */
                 Ext.os.deviceType == "Phone" ? '<h1>{performer} - {name}</h1>' : "",
                 '{chords}',
-                '<a href="{source}#">{source}</a>',
-
+                '<a href="http://{source}">{source}</a>',
                 '</pre>'
             ]
         }

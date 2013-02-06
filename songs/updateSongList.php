@@ -33,6 +33,6 @@ gitPull( $config[ "gitDir" ] );
 
 
 $songs = getSongs( $config[ "songsPattern" ] );
-file_put_contents( " songs.json", json_encode( $songs ) );
-echo count( $songs ) . "songs updated<hr>";
+file_put_contents( "songs.json", json_encode( $songs ) );
+echo count( $songs ) . " songs updated<hr>";
 echo "Good job :)";

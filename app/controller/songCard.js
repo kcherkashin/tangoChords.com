@@ -87,7 +87,6 @@ Ext.define( 'chords.controller.songCard', {
     },
 
 
-
     clearFilter: function () {
         Ext.getStore( 'songs' ).clearFilter();
     },
@@ -104,6 +103,7 @@ Ext.define( 'chords.controller.songCard', {
         store.clearFilter( true );
 
         store.filter( function ( record ) {
+
             /**
              * We go through all the fields in the records, and if any of them matches, we keep the item
              */
