@@ -15,7 +15,7 @@ Ext.define( 'chords.view.song.songCard', {
 
         tab: {
             title:   'Songs',
-            iconCls: 'team1'
+            iconCls: 'home'
         },
 
 

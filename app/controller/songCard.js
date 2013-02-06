@@ -9,7 +9,7 @@
 Ext.define( 'chords.controller.songCard', {
     extend: 'Ext.app.Controller',
 
-    config: {
+    config:         {
         refs:    {
             filter:     'searchfield',
             songList:   'list',
@@ -17,12 +17,9 @@ Ext.define( 'chords.controller.songCard', {
             songSingle: 'songsingle'
         },
         control: {
-
             filter:   {
                 keyup:        'filterList',
                 clearicontap: 'clearFilters'
-
-
             },
             songList: {
                 itemtap: 'displaySong'
@@ -32,12 +29,15 @@ Ext.define( 'chords.controller.songCard', {
             }
         }
     },
+    activeSongCard: function () {
+        return this.getSongCard().query( "songsingle" )[0];
+    },
 
     transposeUp:   function () {
-        this.getSongCard().query( "songsingle" )[0].transpose( 1 );
+        this.activeSongCard().transpose( 1 );
     },
     transposeDown: function () {
-        this.getSongCard().query( "songsingle" )[0].transpose( -1 );
+        this.activeSongCard().transpose( -1 );
     },
 
     hideTransposeButtons: function () {

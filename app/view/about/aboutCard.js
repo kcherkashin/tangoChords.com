@@ -22,8 +22,9 @@ Ext.define( 'chords.view.about.aboutCard', {
 
         tab: {
             title:   'About',
-            iconCls: 'team1'
+            iconCls: 'info'
         }
+
     },
     initialize: function () {
         Ext.Ajax.request( {

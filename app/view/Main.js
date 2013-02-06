@@ -1,4 +1,3 @@
-
 /**
  * Created with JetBrains PhpStorm.
  * Author: Kirill Cherkashin

@@ -92,7 +92,7 @@ Ext.define( 'chords.controller.songSingle', {
             chord += system[x] + " " + line.join( "" );
         }
 
-        return "<pre>" + chord + "</pre>";
+        return '<pre class = "chord-diagram">' + chord + '</pre>';
 
 
     },

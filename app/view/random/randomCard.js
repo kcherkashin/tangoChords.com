@@ -14,7 +14,7 @@ var random = Ext.define( 'chords.view.random.randomCard', {
         layout: 'vbox',
         tab:    {
             title:   'Random song',
-            iconCls: 'team1'
+            iconCls: 'refresh'
         },
         items:  [
             {
