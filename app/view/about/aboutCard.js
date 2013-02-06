@@ -28,7 +28,7 @@ Ext.define( 'chords.view.about.aboutCard', {
     },
     initialize: function () {
         Ext.Ajax.request( {
-            url:     "about.html",
+            url:     "app/data/about.html",
             success: function ( responce ) {
                 this.setHtml( responce.responseText );
             },

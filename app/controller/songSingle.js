@@ -48,6 +48,15 @@ Ext.define( 'chords.controller.songSingle', {
      */
     generateChordDiagram: function ( chordName ) {
         chordName = chordName.trim();
+        var synonyms = {
+            "A#": "B"
+        };
+        for( var i in synonyms ) {
+            if( synonyms.hasOwnProperty( i ) ) {
+                chordName = chordName.replace( i, synonyms[i] );
+            }
+        }
+
         var chords =
         {
             "A":   "02220x", "A7": "02020x",
@@ -83,7 +92,7 @@ Ext.define( 'chords.controller.songSingle', {
 
         var line, index, chord = "";
         for( var x = 0; x < 6; x++ ) {
-            line = '-|------.\n'.split( "" );
+            line = '-|--------\n'.split( "" );
             index = +chart[x];
             if( index > 0 ) {
                 index++;

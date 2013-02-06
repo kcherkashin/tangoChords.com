@@ -38,7 +38,7 @@ Ext.define( 'chords.model.song', {
                     /**
                      *  This regex is used to match and replace chords.
                      */
-                    var chordsRegexp = new RegExp( "\\b(" + chordBase + ")\\b\\s?", "g" );
+                    var chordsRegexp = new RegExp( "\\b(" + chordBase + ")\\s", "g" );
 
 
                     var lines = text.split( /[\n\r]/ );
@@ -48,7 +48,7 @@ Ext.define( 'chords.model.song', {
                      */
                     for( var i = 0, l = lines.length; i < l; i++ ) {
                         if( lines[i].match( chordsOnlyRegex ) ) {
-                            lines[i] = (lines[i] + " ").replace( chordsRegexp, "<span class = 'chord'>$1</span>" )
+                            lines[i] = (lines[i] + " ").replace( chordsRegexp, "<span class = 'chord'>$1</span> " );
                             chords += '<p class = "chords-line">' + lines[i] + '</p>';
                         } else {
                             chords += '<p class = "text-line">' + lines[i] + '</p>';
