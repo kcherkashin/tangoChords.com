@@ -19,7 +19,7 @@ Ext.define( 'chords.controller.songCard', {
         control: {
             filter:   {
                 keyup:        'filterList',
-                clearicontap: 'clearFilters'
+                clearicontap: 'clearFilter'
             },
             songList: {
                 itemtap: 'displaySong'
@@ -86,8 +86,10 @@ Ext.define( 'chords.controller.songCard', {
         this.getSongCard().push( song );
     },
 
-    clearFilters: function () {
-        Ext.getStore( 'songs' ).clearFilter( true );
+
+    
+    clearFilter: function () {
+        Ext.getStore( 'songs' ).clearFilter();
     },
 
     /**
@@ -100,21 +102,20 @@ Ext.define( 'chords.controller.songCard', {
         var store = Ext.getStore( 'songs' );
 
         store.clearFilter( true );
-        if( query.length ) {
-            store.filter( function ( record ) {
-                /**
-                 * We go through all the fields in the records, and if any of them matches, we keep the item
-                 */
-                for( var i in  record.data ) {
-                    if( record.data.hasOwnProperty( i ) ) {
-                        if( record.data[i] && record.data[i].toLowerCase().search( query ) !== -1 ) {
-                            return true;
-                        }
+
+        store.filter( function ( record ) {
+            /**
+             * We go through all the fields in the records, and if any of them matches, we keep the item
+             */
+            for( var i in  {name: true, performer: true } ) {
+                if( record.data.hasOwnProperty( i ) ) {
+                    if( record.data[i] && record.data[i].toLowerCase().search( query ) !== -1 ) {
+                        return true;
                     }
                 }
-                return false;
-            } )
-        }
+            }
+            return false;
+        } )
 
 
     }
