@@ -23,6 +23,7 @@ Ext.define( 'chords.view.song.songCard', {
             {
                 store:   "songs",
                 xtype:   "list",
+                title:   "Tango chords for guitar",
                 items:   [
                     {
                         xtype: 'listitemheader',
