@@ -12,9 +12,7 @@ Ext.define( 'chords.view.song.songSingle', {
         xtype:  'songsingle',
 
         initialize: function () {
-            this.callParent( arguments );
             this.config.tpl.parent = this;
-
         },
         transpose:  function ( steps ) {
             this.fireEvent( "transposeSong", steps, this );
@@ -30,42 +28,84 @@ Ext.define( 'chords.view.song.songSingle', {
                 '<a href="http://{source}">{source}</a>',
                 '</pre>',
                 {
-                    wrapChords: function ( text ) {
-                        var chords = "";
+                    /**
+                     * This is a self executing function that prepares regexps we'll need further
+                     */
+                    regex: function () {
 
                         /**
                          *  Generic  Regexp to Match any chord
                          */
                         var chordBase = "[A-H][\\#b]?m?(5|6|7|9|sus2|sus4|7/9|dim)?";
 
-                        /**
-                         *  This regex match line which has nothing but chords and spaces.
-                         */
-                        var chordsOnlyRegex = new RegExp( "^\\s*(" + chordBase + "\\s*)+$" );
+                        return {
+                            /**
+                             *  This regex match line which has nothing but chords and spaces.
+                             */
+                            chordLine: new RegExp( "^\\s*(" + chordBase + "\\s*)+$" ),
 
-                        /**
-                         *  This regex is used to match and replace chords.
-                         */
-                        var chordsRegexp = new RegExp( "\\b(" + chordBase + ")\\s", "g" );
+                            /**
+                             *  This regex is used to match and replace chords.
+                             */
+                            chord: new RegExp( "\\b(" + chordBase + ")\\s", "g" )
 
-
-                        var lines = text.split( /[\n\r]/ );
-
-                        /**
-                         * We only want to work with lines that have nothing but the chords.
-                         */
-                        for( var i = 0, l = lines.length; i < l; i++ ) {
-                            if( lines[i].match( chordsOnlyRegex ) ) {
-                                lines[i] = (lines[i] + " ").replace( chordsRegexp, "<span class = 'chord'>$1</span> " );
-                                chords += '<p class = "chords-line">' + lines[i] + '</p>';
-                            } else {
-                                chords += '<p class = "text-line">' + lines[i] + '</p>';
-                            }
                         }
 
-                        return  chords;
+                    }(),
+
+                    /**
+                     * Wrap all chords in a span
+                     * @param line
+                     */
+                    wrapChordsInLine: function ( line ) {
+                        return (line + " ").replace( this.regex.chord, "<span class = 'chord'>$1</span> " );
+                    },
 
 
+                    /**
+                     * Returns true is line consists of chords only.
+                     *
+                     * @param line
+                     */
+                    isChordLine: function ( line ) {
+                        return line.match( this.regex.chordLine );
+                    },
+
+                    /**
+                     * If a lines consists of chord only, we wrap the chords in it.
+                     * @param line
+                     */
+                    wrapLine:   function ( line ) {
+                        if( this.isChordLine( line ) ) {
+                            line = this.wrapChordsInLine( line );
+                            return '<p class = "chords-line">' + line + '</p>';
+                        } else {
+                            return '<p class = "text-line">' + line + '</p>';
+                        }
+                    },
+                    /**
+                     * Goes through the text and wraps chords in <p> elements
+                     * e.g.
+                     *
+                     * Am   Dm
+                     * alalalla
+                     *
+                     * Will turn into
+                     * <p class = "chords-line">
+                     *     <span class = 'chord'>Am</span>
+                     *     <span class = 'chord'>Dm</span>
+                     * </p>';
+                     * <p class = "text-line">alalalla</p>
+                     *
+                     *
+                     *
+                     */
+                    wrapChords: function ( text ) {
+                        var lines = text.split( /[\n\r]/ );
+                        for( var i = 0, l = lines.length; i < l; i++ ) {
+                            lines[i] = this.wrapLine( lines[i] );
+                        }
+                        return  lines.join( "" );
                     }
 
                 }

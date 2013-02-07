@@ -18,7 +18,8 @@ files = [
     'app/*/*/*.js',
     'tests/extConfig.js',
     'tests/specs/*Spec.js',
-    'tests/specs/*/*Spec.js'
+    'tests/specs/*/*Spec.js',
+    'tests/specs/*/*/*Spec.js'
 
 ];
 
