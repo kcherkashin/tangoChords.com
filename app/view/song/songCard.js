@@ -13,12 +13,10 @@ Ext.define( 'chords.view.song.songCard', {
 
     config: {
 
-        tab: {
+        tab:   {
             title:   'Songs',
             iconCls: 'home'
         },
-
-
         items: [
             {
                 store:   "songs",
@@ -43,9 +41,6 @@ Ext.define( 'chords.view.song.songCard', {
                 ]
             }
         ]
-
-
-
     }
 
 
