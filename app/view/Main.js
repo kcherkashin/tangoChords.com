@@ -14,8 +14,11 @@ Ext.define( 'chords.view.Main', {
         'chords.view.random.randomCard',
         'chords.view.song.songCard',
         'chords.view.about.aboutCard'
+
+
     ],
-    config:   {
+
+    config: {
         tabBarPosition: 'bottom',
 
         items: [

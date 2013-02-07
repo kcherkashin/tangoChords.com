@@ -28,7 +28,7 @@ Ext.define( 'chords.model.song', {
                     /**
                      *  Generic  Regexp to Match any chord
                      */
-                    var chordBase = "[A-H][\\#b]?m?(7|5|9|sus2|sus4|7/9|dim)?";
+                    var chordBase = "[A-H][\\#b]?m?(5|6|7|9|sus2|sus4|7/9|dim)?";
 
                     /**
                      *  This regex match line which has nothing but chords and spaces.
