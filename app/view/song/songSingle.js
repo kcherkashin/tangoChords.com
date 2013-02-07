@@ -13,6 +13,7 @@ Ext.define( 'chords.view.song.songSingle', {
 
         initialize: function () {
             this.callParent( arguments );
+            this.config.tpl.parent = this;
 
         },
         transpose:  function ( steps ) {
@@ -22,16 +23,55 @@ Ext.define( 'chords.view.song.songSingle', {
 
         config: {
             scrollable: 'both',
-            tpl:        [
+            tpl:        new Ext.XTemplate(
                 '<pre class = "info song chords">',
-            /**
-             * For phones we want to move the title out of the navigation bar.
-             */
-                Ext.os.deviceType == "Phone" ? '<h1>{performer} - {name}</h1>' : "",
-                '{chords}',
+                Ext.os.deviceType == "Phone" ? '<h1>{title}</h1>' : '',
+                '{[this.wrapChords(values.text)]}',
                 '<a href="http://{source}">{source}</a>',
-                '</pre>'
-            ]
+                '</pre>',
+                {
+                    wrapChords: function ( text ) {
+                        var chords = "";
+
+                        /**
+                         *  Generic  Regexp to Match any chord
+                         */
+                        var chordBase = "[A-H][\\#b]?m?(5|6|7|9|sus2|sus4|7/9|dim)?";
+
+                        /**
+                         *  This regex match line which has nothing but chords and spaces.
+                         */
+                        var chordsOnlyRegex = new RegExp( "^\\s*(" + chordBase + "\\s*)+$" );
+
+                        /**
+                         *  This regex is used to match and replace chords.
+                         */
+                        var chordsRegexp = new RegExp( "\\b(" + chordBase + ")\\s", "g" );
+
+
+                        var lines = text.split( /[\n\r]/ );
+
+                        /**
+                         * We only want to work with lines that have nothing but the chords.
+                         */
+                        for( var i = 0, l = lines.length; i < l; i++ ) {
+                            if( lines[i].match( chordsOnlyRegex ) ) {
+                                lines[i] = (lines[i] + " ").replace( chordsRegexp, "<span class = 'chord'>$1</span> " );
+                                chords += '<p class = "chords-line">' + lines[i] + '</p>';
+                            } else {
+                                chords += '<p class = "text-line">' + lines[i] + '</p>';
+                            }
+                        }
+
+                        return  chords;
+
+
+                    }
+
+                }
+            )
+
+
         }
     }
 );

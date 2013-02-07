@@ -16,6 +16,7 @@ files = [
     'app/*.js',
     'app/*/*.js',
     'app/*/*/*.js',
+    'tests/extConfig.js',
     'tests/specs/*Spec.js',
     'tests/specs/*/*Spec.js'
 

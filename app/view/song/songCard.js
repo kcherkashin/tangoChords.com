@@ -39,7 +39,7 @@ Ext.define( 'chords.view.song.songCard', {
 
                 ],
                 itemTpl: [
-                    '{performer} - {name}'
+                    '{title}'
                 ]
             }
         ]
