@@ -23,12 +23,7 @@ Ext.define( 'chords.model.song', {
             }
         ]
 
-    },
-
-    getTitle: function () {
-        return this.get( 'performer' ) + ' - ' + this.get( 'name' );
     }
-
 
 
 } );

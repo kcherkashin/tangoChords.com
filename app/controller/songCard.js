@@ -80,7 +80,7 @@ Ext.define( 'chords.controller.songCard', {
      */
     displaySong:             function ( list, index, el, record ) {
         var song = this.getApplication().getController( 'songSingle' ).createSong( record );
-        song.config.title = record.getTitle();
+        song.config.title = record.data.title;
         list.getStore().clearFilter( true );
         this.displayTransposeButtons();
         this.getSongCard().push( song );

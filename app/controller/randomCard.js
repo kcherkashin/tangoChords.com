@@ -42,9 +42,10 @@ Ext.define( 'chords.controller.randomCard', {
          *
          * For the Phone we don't update title, because navigation bar is too small. We'll just move it inline.
          */
+
         if( newItem.id && Ext.os.deviceType !== "Phone" ) {
 
-            this.getToolbar().setTitle( newItem.getRecord().getTitle() );
+            this.getToolbar().setTitle( newItem.getRecord().data.title );
 
         }
 
