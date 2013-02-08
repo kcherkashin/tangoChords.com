@@ -57,7 +57,6 @@ Ext.define( 'chords.controller.songSingle', {
                 return "Can't transpose chord '" + chord + "'";
             }
             var newIndex = (reverseIndex[note] + steps + 12) % 12;
-            console.log( chord, noteIndex[ newIndex ], newIndex );
             return chord.replace( note, noteIndex[ newIndex ] );
         }
     }()),
