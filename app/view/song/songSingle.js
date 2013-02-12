@@ -10,19 +10,19 @@
 
 Ext.define( 'chords.view.song.songSingle', {
         extend: 'Ext.Container',
-        xtype:  'songsingle',
+        xtype: 'songsingle',
 
         initialize: function () {
             this.config.tpl.parent = this;
         },
-        transpose:  function ( steps ) {
+        transpose: function ( steps ) {
             this.fireEvent( "transposeSong", steps, this );
         },
 
 
         config: {
             scrollable: 'both',
-            tpl:        new Ext.XTemplate(
+            tpl: new Ext.XTemplate(
                 '<pre class = "info song chords">',
                 Ext.os.deviceType == "Phone" ? '<h1>{title}</h1>' : '',
                 '{[this.wrapChords(values.text)]}',
@@ -77,7 +77,7 @@ Ext.define( 'chords.view.song.songSingle', {
                      * If a lines consists of chord only, we wrap the chords in it.
                      * @param line
                      */
-                    wrapLine:   function ( line ) {
+                    wrapLine: function ( line ) {
                         if( this.isChordLine( line ) ) {
                             line = this.wrapChordsInLine( line );
                             return '<p class = "chords-line">' + line + '</p>';

@@ -7,8 +7,8 @@
 "use strict";
 
 Ext.define( 'chords.view.song.songCard', {
-    extend:   'Ext.NavigationView',
-    xtype:    'songcard',
+    extend: 'Ext.NavigationView',
+    xtype: 'songcard',
     requires: [
         "Ext.field.Search",
         "Ext.dataview.List",
@@ -19,56 +19,51 @@ Ext.define( 'chords.view.song.songCard', {
 
     config: {
 
-        tab:   {
-            title:   'Songs',
-            iconCls: 'home'
+        tab: {
+            title: 'Songs',
+            iconCls: 'home',
+            id: 'songCardTab'
         },
         items: [
+
+
             {
-                store:    "songs",
-                xtype:    "touchgridpanel",
-                columns:  [
+                store: "songs",
+                xtype: "touchgridpanel",
+                columns: [
                     {
-                        header:    'Name',
+                        header: 'Name',
                         dataIndex: 'name',
-                        style:     'padding: 0 20px;',
-                        width:     '40%'
+                        style: 'padding: 0 20px;',
+                        width: '40%'
                     },
                     {
-                        header:    'Performer',
+                        header: 'Performer',
                         dataIndex: 'performer',
-                        style:     'padding: 0 20px;',
-                        width:     '40%'
+                        style: 'padding: 0 20px;',
+                        width: '40%'
                     },
                     {
-                        header:    'Genre',
+                        header: 'Genre',
                         dataIndex: 'genre',
-                        style:     'padding: 0 20px;',
-                        width:     '20%'
+                        style: 'padding: 0 20px;',
+                        width: '20%'
                     }
                 ],
                 features: [
                     {
-                        ftype:    'Ext.ux.touch.grid.feature.Sorter',
+                        ftype: 'Ext.ux.touch.grid.feature.Sorter',
                         launchFn: 'initialize'
                     }
                 ],
-                title:    "Tango chords for guitar",
-                items:    [
-                    {
-                        xtype: 'listitemheader',
-                        cls:   'dark',
-                        html:  'Tango songs'
-                    },
-                    {
-                        docked: 'top',
-                        xtype:  'searchfield',
-                        label:  'Filter',
-                        name:   'query'
-                    }
-
-                ],
-                itemTpl:  [
+                title: "Tango chords for guitar",
+                items: {
+                    docked: 'top',
+                    xtype: 'searchfield',
+                    label: 'Filter',
+                    name: 'query'
+                },
+                itemTpl: [
                     '{title}'
                 ]
             }

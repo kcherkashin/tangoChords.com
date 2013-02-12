@@ -14,7 +14,7 @@ Ext.define( 'chords.model.song', {
         fields: [
             "id", "name", "genre", "performer", "words", "text", "source",
             {
-                name:    'title',
+                name: 'title',
                 convert: function ( v, record ) {
                     return record.data.performer + " - " + record.data.name;
                 }

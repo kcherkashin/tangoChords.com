@@ -11,11 +11,11 @@ Ext.define( 'chords.controller.randomCard', {
 
     config: {
         refs: {
-            carousel:      "#randomCarousel",
-            card:          "randomcard",
-            toolbar:       "randomcard toolbar",
+            carousel: "#randomCarousel",
+            card: "randomcard",
+            toolbar: "randomcard toolbar",
             transposeDown: "#transposeDown",
-            transposeUp:   "#transposeUp"
+            transposeUp: "#transposeUp"
         }
 
 
@@ -24,7 +24,7 @@ Ext.define( 'chords.controller.randomCard', {
     pushRandomSong: function () {
         var record = Ext.getStore( "songs" ).getRandomItem();
         if( record ) {
-            var song = this.getApplication().getController( "songSpingle" ).createSong( record );
+            var song = this.getApplication().getController( "songSingle" ).createSong( record );
             this.getCarousel().add( song );
         }
     },

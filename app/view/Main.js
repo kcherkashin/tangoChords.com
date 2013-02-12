@@ -8,8 +8,8 @@
 
 
 Ext.define( 'chords.view.Main', {
-    extend:   'Ext.tab.Panel',
-    xtype:    'main',
+    extend: 'Ext.tab.Panel',
+    xtype: 'main',
     requires: [
         'chords.view.random.randomCard',
         'chords.view.song.songCard',
@@ -20,7 +20,6 @@ Ext.define( 'chords.view.Main', {
 
     config: {
         tabBarPosition: 'bottom',
-
         items: [
             {
                 xtype: 'songcard'

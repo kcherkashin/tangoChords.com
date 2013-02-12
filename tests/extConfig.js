@@ -21,8 +21,8 @@ window.__testacular__.loaded = function () {
 
 
 Ext.Loader.setPath( {
-    'Ext':               'touch/src',
-    'chords':            'base/app',
+    'Ext': 'touch/src',
+    'chords': 'base/app',
     'Ext.ux.touch.grid': 'base/app/components/touch.grid'
 
 } );

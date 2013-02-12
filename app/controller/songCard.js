@@ -9,16 +9,20 @@
 Ext.define( 'chords.controller.songCard', {
     extend: 'Ext.app.Controller',
 
-    config:         {
-        refs:    {
-            filter:     'searchfield',
-            songList:   'list',
-            songCard:   'songcard',
-            songSingle: 'songsingle'
+    config: {
+        refs: {
+            filter: 'searchfield',
+            songList: 'list',
+            songCard: 'songcard',
+            songSingle: 'songsingle',
+            songCardTab: '#songCardTab'
         },
         control: {
-            filter:   {
-                keyup:        'filterList',
+            songCardTab: {
+                tap: 'openSongCard'
+            },
+            filter: {
+                keyup: 'filterList',
                 clearicontap: 'clearFilter'
             },
             songList: {
@@ -29,11 +33,15 @@ Ext.define( 'chords.controller.songCard', {
             }
         }
     },
+    openSongCard: function () {
+        this.getSongCard().pop();
+    },
+
     activeSongCard: function () {
         return this.getSongCard().query( "songsingle" )[0];
     },
 
-    transposeUp:   function () {
+    transposeUp: function () {
         this.activeSongCard().transpose( 1 );
     },
     transposeDown: function () {
@@ -53,7 +61,7 @@ Ext.define( 'chords.controller.songCard', {
 
         if( !this.TransposeButtons ) {
             this.TransposeButtons = {
-                up:   Ext.create( 'Ext.Button', {text: 'Transpose up', align: 'right'} ),
+                up: Ext.create( 'Ext.Button', {text: 'Transpose up', align: 'right'} ),
                 down: Ext.create( 'Ext.Button', {text: 'Transpose down', align: 'right'} )
             };
 
@@ -78,7 +86,7 @@ Ext.define( 'chords.controller.songCard', {
      * @param el
      * @param record
      */
-    displaySong:             function ( list, index, el, record ) {
+    displaySong: function ( list, index, el, record ) {
         var song = this.getApplication().getController( 'songSingle' ).createSong( record );
         song.config.title = record.data.title;
         list.getStore().clearFilter( true );
