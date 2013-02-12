@@ -32,6 +32,13 @@ describe( "isChordLine", function () {
                 expect( template.isChordLine( chord ) ).toBeTruthy();
             } );
     } );
+    it( "matches chords with second bass note", function () {
+        [
+            "   A/E"
+        ].forEach( function ( chord ) {
+                expect( template.isChordLine( chord ) ).toBeTruthy();
+            } );
+    } );
 
     it( "Doesn't match anything which is not a chord", function () {
         [
@@ -56,6 +63,11 @@ describe( "isChordLine", function () {
     it( "Doesn't match line if  it has anything but chords ", function () {
         [  " A    Am   z      Dm   ", "    Amaj13    q  Amaj9" ].forEach( function ( chord ) {
             expect( template.isChordLine( chord ) ).not.toBeTruthy();
+        } );
+    } );
+    it( "Matches whole lines", function () {
+        [  "   D         D#dim          D/F#          Fdim         Em A7" ].forEach( function ( chord ) {
+            expect( template.isChordLine( chord ) ).toBeTruthy();
         } );
     } );
 
