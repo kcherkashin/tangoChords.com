@@ -114,6 +114,7 @@ Ext.define( 'chords.controller.songCard', {
 
             /**
              * We go through  the fields in the records, and if any of them matches, we keep the item
+             * We need both nameLatin and name fields, to allow user not to enter accents.
              */
             for( var i in  {name: true, performer: true, nameLatin: true, performerLatin: true, genre: true } ) {
                 if( record.data.hasOwnProperty( i ) ) {

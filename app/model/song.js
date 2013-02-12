@@ -39,18 +39,38 @@
         config: {
 
             fields: [
-                "id", "name", "genre", "performer", "words", "text", "source",
+                "id", "name", "performer", "words", "text", "source",
                 {
                     name: 'title',
                     convert: function ( v, record ) {
                         return record.data.performer + " - " + record.data.name;
                     }
-                }, {
+                },
+                {
+                    name: 'genre',
+                    convert: function ( v, record ) {
+                        var genre = record.data.genre || 'Tango';
+
+                        if( Ext.os.deviceType === "Phone" ) {
+                            genre = genre.substr( 0, 1 );
+                        }
+
+                        return genre
+                    }
+                },
+                {
+                    name: 'genreFull',
+                    convert: function ( v, record ) {
+                        return record.data.genre || 'Tango';
+                    }
+                },
+                {
                     name: 'nameLatin',
                     convert: function ( v, record ) {
                         return stripAccents( record.data.name );
                     }
-                }, {
+                },
+                {
                     name: 'performerLatin',
                     convert: function ( v, record ) {
                         return stripAccents( record.data.performer );

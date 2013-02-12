@@ -34,20 +34,20 @@ Ext.define( 'chords.view.song.songCard', {
                     {
                         header: 'Name',
                         dataIndex: 'name',
-                        style: 'padding: 0 20px;',
-                        width: '40%'
+                        style: 'padding: 0 5px;',
+                        width: '47%'
                     },
                     {
                         header: 'Performer',
                         dataIndex: 'performer',
-                        style: 'padding: 0 20px;',
-                        width: '40%'
+                        style: 'padding: 0 5px;',
+                        width: '45%'
                     },
                     {
                         header: 'Genre',
                         dataIndex: 'genre',
-                        style: 'padding: 0 20px;',
-                        width: '20%'
+                        style: 'padding: 0 5px;',
+                        width: '8%'
                     }
                 ],
                 features: [
