@@ -29,7 +29,7 @@ Ext.define( 'chords.controller.randomCard', {
     /**
      * Songs are already shuffled, so we just go to a next one, and to the first one, once we're out of songs
      */
-        
+
     getRandomSong: function () {
         var carousel = this.getCarousel();
         if( carousel.getMaxItemIndex() === carousel.getActiveIndex() ) {

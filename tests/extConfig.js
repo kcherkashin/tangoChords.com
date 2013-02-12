@@ -26,16 +26,10 @@ Ext.Loader.setPath( {
     'Ext.ux.touch.grid': 'base/app/components/touch.grid'
 
 } );
-/**
- * Ugly!
- * TODO: Find how to call app.launch
- */
-Ext.onReady( function () {
-    window.setTimeout( function () {
-        window.__testacular__.start();
-    }, 500 )
 
+Ext.onReady( function () {
+    window.__testacular__.start();
 } );
-;
+
 
 
