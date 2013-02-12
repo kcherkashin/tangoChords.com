@@ -15,13 +15,33 @@ Ext.define( 'chords.controller.randomCard', {
             card: "randomcard",
             toolbar: "randomcard toolbar",
             transposeDown: "#transposeDown",
-            transposeUp: "#transposeUp"
+            transposeUp: "#transposeUp",
+            randomCardTab: "#randomCardTab"
+        },
+        control: {
+            randomCardTab: {
+                tap: 'getRandomSong'
+            }
         }
 
 
     },
+    /**
+     * Songs are already shuffled, so we just go to a next one, and to the first one, once we're out of songs
+     */
+        
+    getRandomSong: function () {
+        var carousel = this.getCarousel();
+        if( carousel.getMaxItemIndex() === carousel.getActiveIndex() ) {
+            carousel.setActiveItem( 0 );
+        } else {
+            carousel.next()
+        }
+    },
+
 
     pushRandomSong: function () {
+
         var record = Ext.getStore( "songs" ).getRandomItem();
         if( record ) {
             var song = this.getApplication().getController( "songSingle" ).createSong( record );
