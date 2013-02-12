@@ -13,10 +13,12 @@ files = [
 
 
     'touch/sencha-touch-all.js',
+    'tests/extConfig.js',
+    'app.js',
     'app/*.js',
     'app/*/*.js',
     'app/*/*/*.js',
-    'tests/extConfig.js',
+
     'tests/specs/*Spec.js',
     'tests/specs/*/*Spec.js',
     'tests/specs/*/*/*Spec.js'
@@ -32,7 +34,7 @@ exclude = [
 
 // test results reporter to use
 // possible values: 'dots', 'progress', 'junit'
-reporters = ['progress'];
+reporters = ['dots'];
 
 
 // web server port

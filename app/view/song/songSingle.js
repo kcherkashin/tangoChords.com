@@ -7,6 +7,7 @@
 // Sencha thows an error if strict mode is on.
 //"use strict";
 
+
 Ext.define( 'chords.view.song.songSingle', {
         extend: 'Ext.Container',
         xtype:  'songsingle',

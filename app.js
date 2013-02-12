@@ -6,15 +6,15 @@
 
 "use strict";
 
-
 //<debug>
-Ext.Loader.setPath( {
-    'Ext':    'touch/src',
-    'chords': 'app'
-} );
+//Ext.Loader.setPath( {
+//    'Ext':    'touch/src',
+//    'chords': 'app'
+//} );
 //</debug>
 
-Ext.application( {
+
+var app = Ext.application( {
 
     name: 'chords',
 
@@ -49,10 +49,14 @@ Ext.application( {
 
     launch: function () {
         // Destroy the #appLoadingIndicator element
-        Ext.fly( 'appLoadingIndicator' ).destroy();
+        var appLoadingIndicator = Ext.fly( 'appLoadingIndicator' );
+        if( appLoadingIndicator ) {
+            appLoadingIndicator.destroy();
+        }
 
         // Initialize the main view
         Ext.Viewport.add( Ext.create( 'chords.view.Main' ) );
+
     },
 
     onUpdated: function () {
@@ -67,3 +71,4 @@ Ext.application( {
         );
     }
 } );
+

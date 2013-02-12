@@ -31,7 +31,12 @@ Ext.define( 'chords.controller.songSingle', {
      *
      */
     transposeChord: (function () {
-
+        /**
+         * This is a regex for the main Note of the chord.
+         * e.g. A, A#, F
+         * but not Z, @
+         */
+        var noteRegex = /([A-H]\#?)/g;
         /**
          * We need this index to figure out which note comes after which.
          */
@@ -49,15 +54,20 @@ Ext.define( 'chords.controller.songSingle', {
          * Some synonyms also go here.
          */
         reverseIndex['A#'] = 1;
+        reverseIndex['B#'] = 2;
+        reverseIndex['H#'] = 3;
+        reverseIndex['E#'] = 8;
 
 
         return function ( chord, steps ) {
-            var note = chord.match( /[A-H]\#?/ );
-            if( !note || typeof reverseIndex[note] === "undefined" ) {
-                return "Can't transpose chord '" + chord + "'";
-            }
-            var newIndex = (reverseIndex[note] + steps + 12) % 12;
-            return chord.replace( note, noteIndex[ newIndex ] );
+            return  chord.replace( noteRegex, function ( note ) {
+                if( !note || typeof reverseIndex[note] === "undefined" ) {
+                    return "Can't transpose chord '" + chord + "'";
+                }
+                var newIndex = (reverseIndex[note] + steps + 12) % 12;
+                return noteIndex[ newIndex];
+            } );
+
         }
     }()),
 

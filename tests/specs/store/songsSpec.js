@@ -26,7 +26,6 @@ describe( "Songs store", function () {
         for( var i = 0, l = this.store.data.items.length; i < l; i++ ) {
             randomItem = this.store.getRandomItem();
             if( !unique[randomItem] ) {
-                console.log( randomItem );
                 unique[randomItem] = true;
             } else {
                 throw "Item repeats: " + randomItem;
