@@ -115,7 +115,7 @@ Ext.define( 'chords.controller.songCard', {
             /**
              * We go through  the fields in the records, and if any of them matches, we keep the item
              */
-            for( var i in  {name: true, performer: true, nameLatin: true, performerLatin: true } ) {
+            for( var i in  {name: true, performer: true, nameLatin: true, performerLatin: true, genre: true } ) {
                 if( record.data.hasOwnProperty( i ) ) {
                     if( record.data[i] && record.data[i].toLowerCase().search( query ) !== -1 ) {
                         return true;
