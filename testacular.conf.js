@@ -13,12 +13,12 @@ files = [
 
 
     'touch/sencha-touch-all.js',
-    'tests/extConfig.js',
     'app.js',
+    'tests/extConfig.js',
     'app/*.js',
     'app/*/*.js',
     'app/*/*/*.js',
-
+    'app/*/*/*/*.js',
     'tests/specs/*Spec.js',
     'tests/specs/*/*Spec.js',
     'tests/specs/*/*/*Spec.js'

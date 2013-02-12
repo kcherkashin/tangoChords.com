@@ -24,10 +24,11 @@ Ext.define( 'chords.controller.randomCard', {
     pushRandomSong: function () {
         var record = Ext.getStore( "songs" ).getRandomItem();
         if( record ) {
-            var song = this.getApplication().getController( "songSingle" ).createSong( record );
+            var song = this.getApplication().getController( "songSpingle" ).createSong( record );
             this.getCarousel().add( song );
         }
     },
+
     /**
      * Adds new pages to the carousel if necessary.
      *

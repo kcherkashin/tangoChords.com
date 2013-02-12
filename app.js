@@ -7,10 +7,9 @@
 "use strict";
 
 //<debug>
-//Ext.Loader.setPath( {
-//    'Ext':    'touch/src',
-//    'chords': 'app'
-//} );
+Ext.Loader.setPath( {
+    'Ext.ux.touch.grid': 'app/components/touch.grid'
+} );
 //</debug>
 
 

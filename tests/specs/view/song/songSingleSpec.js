@@ -12,6 +12,7 @@ describe( "isChordLine", function () {
 
     var template = Ext.create( "chords.view.song.songSingle" ).getTpl();
 
+
     it( "matches all basic chords", function () {
         [
             "A", "B", "C", "D", "E", "F", "G", "H",
