@@ -33,6 +33,14 @@ Ext.define( 'chords.controller.songCard', {
             }
         }
     },
+    /**
+     *
+     */
+    launch: function () {
+        if( Ext.os.deviceType === "Phone"){
+            this.getSongCard().getNavigationBar().hide();
+        }
+    },
     openSongCard: function () {
         this.getSongCard().pop();
     },
