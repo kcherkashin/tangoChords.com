@@ -29,18 +29,23 @@ Ext.define( 'chords.controller.songCard', {
                 itemtap: 'displaySong'
             },
             songCard: {
-                pop: 'hideTransposeButtons'
+                pop: 'hideTransposeButtons',
+                push: 'showNavBarForPhones'
             }
         }
     },
     /**
-     *
+     * We want to hide navigation bar
      */
     launch: function () {
-        if( Ext.os.deviceType === "Phone"){
+        if( Ext.os.deviceType === "Phone" ) {
             this.getSongCard().getNavigationBar().hide();
         }
     },
+    showNavBarForPhones: function () {
+        this.getSongCard().getNavigationBar().show();
+    },
+
     openSongCard: function () {
         this.getSongCard().pop();
     },
@@ -59,6 +64,7 @@ Ext.define( 'chords.controller.songCard', {
     hideTransposeButtons: function () {
         this.TransposeButtons.up.hide();
         this.TransposeButtons.down.hide();
+        this.getSongCard().getNavigationBar().hide();
     },
 
     /**
@@ -76,6 +82,7 @@ Ext.define( 'chords.controller.songCard', {
             navBar = this.getSongCard().getNavigationBar();
             navBar.add( this.TransposeButtons.up );
             navBar.add( this.TransposeButtons.down );
+
 
             this.TransposeButtons.up.on( "tap", this.transposeUp, this );
             this.TransposeButtons.down.on( "tap", this.transposeDown, this );
