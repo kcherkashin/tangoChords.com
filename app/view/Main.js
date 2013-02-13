@@ -15,8 +15,6 @@ Ext.define( 'chords.view.Main', {
         'chords.view.song.songCard',
         'chords.view.about.aboutCard',
         'chords.view.filter.filterCard'
-
-
     ],
 
     config: {

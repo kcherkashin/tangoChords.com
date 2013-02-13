@@ -28,6 +28,7 @@ Ext.define( 'chords.view.song.songCard', {
             {
                 store: "songs",
                 xtype: "touchgridpanel",
+
                 columns: [
                     {
                         header: 'Name',

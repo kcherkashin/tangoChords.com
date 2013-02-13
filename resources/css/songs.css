@@ -17,6 +17,13 @@
     padding: 10px;
 }
 
+.x-phone {
+    font-size: 80% !important;
+}
+
+.touchgridpanel .x-grid-cell {
+ font-weight: 400 !important;
+}
 .info h1 {
     margin: 5px 0 15px;
     font-size: 120%;
