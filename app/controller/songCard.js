@@ -11,7 +11,7 @@ Ext.define( 'chords.controller.songCard', {
 
     config: {
         refs: {
-            filter: 'searchfield',
+
             songList: 'list',
             songCard: 'songcard',
             songSingle: 'songsingle',
@@ -21,10 +21,7 @@ Ext.define( 'chords.controller.songCard', {
             songCardTab: {
                 tap: 'openSongCard'
             },
-            filter: {
-                keyup: 'filterList',
-                clearicontap: 'clearFilter'
-            },
+
             songList: {
                 itemtap: 'displaySong'
             },
@@ -102,46 +99,12 @@ Ext.define( 'chords.controller.songCard', {
      * @param record
      */
     displaySong: function ( list, index, el, record ) {
+
         var song = this.getApplication().getController( 'songSingle' ).createSong( record );
         song.config.title = record.data.title;
-        list.getStore().clearFilter( true );
+        //  list.getStore().clearFilter( true );
         this.displayTransposeButtons();
-        this.getSongCard().push( song );
-    },
-
-
-    clearFilter: function () {
-        Ext.getStore( 'songs' ).clearFilter();
-    },
-
-    /**
-     * This is called when user types something in the search field
-     * @param field
-     */
-    filterList: function ( field ) {
-
-        var query = field.getValue().toLowerCase();
-        var store = Ext.getStore( 'songs' );
-
-        store.clearFilter( true );
-
-        store.filter( function ( record ) {
-
-            /**
-             * We go through  the fields in the records, and if any of them matches, we keep the item
-             * We need both nameLatin and name fields, to allow user not to enter accents.
-             */
-            for( var i in  {name: true, performer: true, nameLatin: true, performerLatin: true, genre: true } ) {
-                if( record.data.hasOwnProperty( i ) ) {
-                    if( record.data[i] && record.data[i].toLowerCase().search( query ) !== -1 ) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        } )
-
-
+        list.getParent().push( song );
     }
 
 

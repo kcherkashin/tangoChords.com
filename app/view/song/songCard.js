@@ -16,9 +16,7 @@ Ext.define( 'chords.view.song.songCard', {
         "Ext.ux.touch.grid.feature.Feature",
         "Ext.ux.touch.grid.feature.Sorter"
     ],
-
     config: {
-
         tab: {
             title: 'Songs',
             iconCls: 'home',
@@ -56,16 +54,8 @@ Ext.define( 'chords.view.song.songCard', {
                         launchFn: 'initialize'
                     }
                 ],
-                title: "Tango chords for guitar",
-                items: {
-                    docked: 'top',
-                    xtype: 'searchfield',
-                    label: 'Filter',
-                    name: 'query'
-                },
-                itemTpl: [
-                    '{title}'
-                ]
+                title: "Tango chords for guitar"
+
             }
         ]
     }

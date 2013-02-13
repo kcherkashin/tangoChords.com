@@ -13,7 +13,8 @@ Ext.define( 'chords.view.Main', {
     requires: [
         'chords.view.random.randomCard',
         'chords.view.song.songCard',
-        'chords.view.about.aboutCard'
+        'chords.view.about.aboutCard',
+        'chords.view.filter.filterCard'
 
 
     ],
@@ -21,15 +22,10 @@ Ext.define( 'chords.view.Main', {
     config: {
         tabBarPosition: 'bottom',
         items: [
-            {
-                xtype: 'songcard'
-            },
-            {
-                xtype: 'randomcard'
-            },
-            {
-                xtype: 'aboutcard'
-            }
+            { xtype: 'songcard' },
+            { xtype: 'randomcard' },
+            { xtype: 'filtercard' },
+            { xtype: 'aboutcard' }
         ]
     }
 } );
