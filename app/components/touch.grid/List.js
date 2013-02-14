@@ -16,6 +16,7 @@ Ext.define( 'Ext.ux.touch.grid.List', {
          *  string to be applied to row.  Current record values are passed as the first argument.
          */
         rowCls: null,
+        itemHeight: 20,
         columns: [
             {}
         ],

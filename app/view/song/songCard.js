@@ -9,6 +9,7 @@
 Ext.define( 'chords.view.song.songCard', {
     extend: 'Ext.NavigationView',
     xtype: 'songcard',
+    id: "songGrid",
     requires: [
         "Ext.field.Search",
         "Ext.dataview.List",

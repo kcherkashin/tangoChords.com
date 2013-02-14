@@ -22,8 +22,9 @@
 }
 
 .touchgridpanel .x-grid-cell {
- font-weight: 400 !important;
+    font-weight: 400 !important;
 }
+
 .info h1 {
     margin: 5px 0 15px;
     font-size: 120%;
@@ -52,4 +53,18 @@
     margin: 10px 0;
 }
 
+/*.......| Songs Grid                  |.......................*/
+/**
+ * For some weird reason we can't use itemHeight for the grid
+ */
+#songGrid .x-stretched {
+    height: 32px !important;
+    min-height: 32px !important;
+}
+
+#songGrid .x-grid-cell {
+    height: 32px !important;
+    line-height: 32px !important;
+    min-height: 32px !important;
+}
 

@@ -22,7 +22,7 @@ Ext.define( 'chords.view.Main', {
         items: [
             { xtype: 'songcard' },
             { xtype: 'randomcard' },
-            { xtype: 'filtercard' },
+
             { xtype: 'aboutcard' }
         ]
     }
