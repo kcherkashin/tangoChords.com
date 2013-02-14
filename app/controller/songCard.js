@@ -101,8 +101,7 @@ Ext.define( 'chords.controller.songCard', {
     displaySong: function ( list, index, el, record ) {
 
         var song = this.getApplication().getController( 'songSingle' ).createSong( record );
-        song.config.title = record.data.title;
-        //  list.getStore().clearFilter( true );
+        song.config.title = Ext.os.deviceType === "Phone" ? "" : record.data.title;
         this.displayTransposeButtons();
         list.getParent().push( song );
     }
