@@ -9,7 +9,8 @@
 Ext.define( 'chords.view.song.songCard', {
     extend: 'Ext.NavigationView',
     xtype: 'songcard',
-    id: "songGrid",
+
+
     requires: [
         "Ext.field.Search",
         "Ext.dataview.List",
@@ -18,6 +19,7 @@ Ext.define( 'chords.view.song.songCard', {
         "Ext.ux.touch.grid.feature.Sorter"
     ],
     config: {
+        cls: 'songGrid',
         tab: {
             title: 'Songs',
             iconCls: 'home',
