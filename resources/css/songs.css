@@ -58,6 +58,7 @@
  * For some weird reason we can't use itemHeight for the grid
  */
 .x-container.songGrid .x-stretched, .x-container.songGrid .x-grid-cell {
-    height: 32px;
-    min-height: 32px;
+    height: 1.8em;
+    min-height: 1.8em;
+    line-height: 1.8em;
 }

@@ -16,7 +16,9 @@ Ext.Loader.setPath( {
 var app = Ext.application( {
 
     name: 'chords',
-
+    viewport: {
+        autoMaximize: true
+    },
     requires: [
         'Ext.MessageBox',
         'Ext.data.Store'
