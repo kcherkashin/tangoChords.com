@@ -9,8 +9,7 @@
 Ext.define( 'chords.view.filter.filterCard', {
     extend: 'chords.view.song.songCard',
     xtype: 'filtercard',
-
-
+    id: 'filterCard',
 
     applyItems: function ( newItems, oldItems ) {
         /**

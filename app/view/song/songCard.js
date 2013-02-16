@@ -9,6 +9,7 @@
 Ext.define( 'chords.view.song.songCard', {
     extend: 'Ext.NavigationView',
     xtype: 'songcard',
+    id: 'songCard',
 
 
     requires: [
@@ -26,8 +27,6 @@ Ext.define( 'chords.view.song.songCard', {
             id: 'songCardTab'
         },
         items: [
-
-
             {
                 store: "songs",
                 xtype: "touchgridpanel",
@@ -37,7 +36,7 @@ Ext.define( 'chords.view.song.songCard', {
                         header: 'Name',
                         dataIndex: 'name',
                         style: 'padding: 0 5px;',
-                        width: '47%'
+                        width: '40%'
                     },
                     {
                         header: 'Performer',
@@ -49,7 +48,7 @@ Ext.define( 'chords.view.song.songCard', {
                         header: 'Genre',
                         dataIndex: 'genre',
                         style: 'padding: 0 5px;',
-                        width: '8%'
+                        width: '15%'
                     }
                 ],
                 features: [

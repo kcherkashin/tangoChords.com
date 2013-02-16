@@ -45,6 +45,7 @@ describe( "Songs store", function () {
             this.store.getRandomItem();
         }
         this.store.shuffle();
+        console.log( this.store.getRandomItem()  );
         expect( this.store.getRandomItem() ).not.toBeUndefined();
     } );
 

@@ -49,12 +49,6 @@
                 {
                     name: 'genre',
                     convert: function ( v, record ) {
-                        for( var i in record.data ) {
-                            if( record.data.hasOwnProperty( i ) ) {
-                                console.log( i );
-                            }
-                        }
-
                         var genre = record.data.genre || 'Tango';
 
                         if( Ext.os.deviceType === "Phone" ) {

@@ -12,6 +12,8 @@ describe( "Chords transposer", function () {
     beforeEach( function () {
         this.controller = chords.app.getController( "chords.controller.songSingle" );
     } );
+
+
     it( "Transpose basic chords", function () {
         var i, l;
         var input = ["A", "B", "H", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
@@ -52,6 +54,21 @@ describe( "Chords transposer", function () {
 
         }
     } );
+
+    it( "Can transpose up few notes ", function () {
+        expect( this.controller.transposeChord( 'D', 2 ) ).toBe( 'E' );
+        expect( this.controller.transposeChord( 'D', 3 ) ).toBe( 'F' );
+        expect( this.controller.transposeChord( 'A', 8 ) ).toBe( 'F' );
+        expect( this.controller.transposeChord( 'A', 10 ) ).toBe( 'G' );
+        expect( this.controller.transposeChord( 'A', 12 ) ).toBe( 'A' );
+        expect( this.controller.transposeChord( 'A', 24 ) ).toBe( 'A' );
+        expect( this.controller.transposeChord( this.controller.transposeChord( 'D', 1 ) , 1 ) ).toBe( 'E' );
+
+    } );
+    it( "takes string as a number of steps  ", function () {
+        expect( this.controller.transposeChord( 'D', "1" ) ).toBe( 'D#' );
+    } );
+
 
 
 } );

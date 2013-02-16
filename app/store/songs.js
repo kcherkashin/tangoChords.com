@@ -38,11 +38,25 @@ Ext.define( 'chords.store.songs', {
         if( this.shuffledItems === null ) {
             this.shuffle();
         }
-        return this.getAt( this.shuffledItems.pop() );
 
+        return this.data.items[ this.shuffledItems.pop() ];
     },
 
+    /**
+     * If the store hasn't been loaded, the callback gets stacked, and is executed once it is.
+     * If the store has been loaded, the call get executed immediately
+     */
+    whenLoaded: function ( callback ) {
+        if( !this.loaded ) {
+            this.on( "load", callback.bind( this ) );
+        } else {
+            callback( this );
+        }
+    },
+
+
     config: {
+        autoLoad: true,
         model: 'chords.model.song',
         proxy: {
             type: "ajax",
@@ -53,8 +67,8 @@ Ext.define( 'chords.store.songs', {
             reader: {
                 type: "json"
             }
-        },
-        autoLoad: true
+        }
+
     }
 
 } );

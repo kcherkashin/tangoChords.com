@@ -3,13 +3,14 @@
  * Author: Kirill Cherkashin
  *
  */
-
-"use strict";
+//Call Parent
+//"use strict";
 
 
 Ext.define( 'chords.view.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'main',
+    id: 'tabPanel',
     requires: [
         'chords.view.random.randomCard',
         'chords.view.song.songCard',
@@ -26,4 +27,5 @@ Ext.define( 'chords.view.Main', {
             { xtype: 'aboutcard' }
         ]
     }
+
 } );

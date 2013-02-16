@@ -17,6 +17,8 @@ Ext.define( 'chords.controller.randomCard', {
             transposeDown: "#transposeDown",
             transposeUp: "#transposeUp",
             randomCardTab: "#randomCardTab"
+
+
         },
         control: {
             randomCardTab: {
@@ -31,6 +33,7 @@ Ext.define( 'chords.controller.randomCard', {
      */
 
     getRandomSong: function () {
+
         var carousel = this.getCarousel();
         if( carousel.getMaxItemIndex() === carousel.getActiveIndex() ) {
             carousel.setActiveItem( 0 );
@@ -39,15 +42,15 @@ Ext.define( 'chords.controller.randomCard', {
         }
     },
 
-
+    /**
+     *
+     */
     pushRandomSong: function () {
-
-        var record = Ext.getStore( "songs" ).getRandomItem();
-        if( record ) {
-            var song = this.getApplication().getController( "songSingle" ).createSong( record );
-            this.getCarousel().add( song );
-        }
+        var carousel = this.getCarousel();
+        var addItemToCarousel = carousel.add.bind( carousel );
+        this.getApplication().getController( "songSingle" ).createSong( addItemToCarousel );
     },
+
 
     /**
      * Adds new pages to the carousel if necessary.
@@ -57,6 +60,7 @@ Ext.define( 'chords.controller.randomCard', {
      * @param newItem
      */
     updateCarousel: function ( card, newItem ) {
+
         /**
          * This function can be fired by two different event.
          * If it's fired by updating active song, we should update the title in the navigation bar.
@@ -74,13 +78,15 @@ Ext.define( 'chords.controller.randomCard', {
         /**
          * If we're on the last page, try adding another one if possible.
          */
+
         if( carousel.getMaxItemIndex() === carousel.getActiveIndex() ) {
-            this.pushRandomSong()
+            Ext.getStore( "songs" ).whenLoaded( this.pushRandomSong.bind( this ) );
         }
     },
 
 
     launch: function () {
+
 
         this.getCarousel()
             .on( "painted", this.updateCarousel, this )

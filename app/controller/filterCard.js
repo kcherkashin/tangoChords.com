@@ -11,18 +11,24 @@ Ext.define( 'chords.controller.filterCard', {
 
     config: {
         refs: {
+            filterCard: '#filterCard',
             filter: 'searchfield',
             filterCardTab: '#filterCardTab',
-            search: 'searchfield Search'
-        },
+            search: 'searchfield Search',
+            tabPanel: '#tabPanel'
 
+        },
+        routes: {
+            'Filter/:query': 'handleFilterQuery',
+            'Filter/:query/:id/songName': 'handleFilterQuery'
+        },
         control: {
             filterCardTab: {
-                activate: 'filterList',
+                activate: 'updateFilterQuery',
                 deactivate: 'clearFilter'
             },
             filter: {
-                keyup: 'filterList',
+                keyup: 'updateFilterQuery',
                 clearicontap: 'clearFilter'
             }
         }
@@ -31,20 +37,27 @@ Ext.define( 'chords.controller.filterCard', {
     clearFilter: function () {
         Ext.getStore( 'songs' ).clearFilter();
     },
+    displaySong: function () {
 
-    /**
-     * This is called when user types something in the search field
-     */
-    filterList: function () {
+    },
 
 
-        var query = this.getFilter().getComponent( "Search" ).getValue().toLowerCase();
+    handleFilterQuery: function ( query ) {
+        this.getTabPanel().setActiveItem( this.getTabPanel().innerIndexOf( this.getFilterCard() ) );
+        var search = this.getFilter().getComponent( "Search" );
+        var queryFieldValue = search.getValue().toLowerCase();
+        if( queryFieldValue !== query ) {
+            search.setValue( query );
+        }
+        this.filterList( query );
+
+
+    },
+
+    filterList: function ( query ) {
         var store = Ext.getStore( 'songs' );
-
         store.clearFilter( true );
-
         store.filter( function ( record ) {
-
             /**
              * We go through  the fields in the records, and if any of them matches, we keep the item
              * We need both nameLatin and name fields, to allow user not to enter accents.
@@ -59,7 +72,14 @@ Ext.define( 'chords.controller.filterCard', {
             return false;
         } )
 
+    },
 
+    /**
+     * This is called when user types something in the search field
+     */
+    updateFilterQuery: function () {
+        var query = this.getFilter().getComponent( "Search" ).getValue().toLowerCase();
+        this.redirectTo( 'Filter/' + query );
     }
 
 

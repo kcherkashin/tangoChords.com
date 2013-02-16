@@ -11,43 +11,62 @@ Ext.define( 'chords.controller.songCard', {
 
     config: {
         refs: {
-
-            songList: 'list',
+            tabPanel: '#tabPanel',
+            songLists: 'list',
             songCard: 'songcard',
-            songSingle: 'songsingle',
+            songSingle: {
+                selector: 'songsingle',
+                xtype: 'songsingle',
+                autoCreate: true
+            },
             songCardTab: '#songCardTab'
+
         },
+
+        routes: {
+            'Songs/:id/:songName': 'displaySong'
+        },
+
         control: {
             songCardTab: {
                 tap: 'openSongCard'
             },
-
-            songList: {
-                itemtap: 'displaySong'
+            songLists: {
+                itemtap: 'navigateToSong'
             },
             songCard: {
-                pop: 'hideTransposeButtons',
-                push: 'showNavBarForPhones'
+                activate: 'hideNavBar',
+                pop: 'updateSongsQuery',
+                push: 'showNavBar'
             }
         }
     },
+
+
     /**
      * We want to hide navigation bar
      */
-    launch: function () {
+    hideNavBar: function ( songCard ) {
         if( Ext.os.deviceType === "Phone" ) {
-            this.getSongCard().getNavigationBar().hide();
+            songCard.getNavigationBar().hide();
         }
     },
-    showNavBarForPhones: function () {
+    showNavBar: function () {
         this.getSongCard().getNavigationBar().show();
     },
 
     openSongCard: function () {
-        this.getSongCard().pop();
+
+        var songCard = this.getSongCard();
+        if( songCard ) {
+            songCard.pop();
+            this.getSongCard().getNavigationBar().hide();
+        }
+
     },
 
     activeSongCard: function () {
+        console.log( this.getSongCard().query( "songsingle" ) );
         return this.getSongCard().query( "songsingle" )[0];
     },
 
@@ -57,11 +76,8 @@ Ext.define( 'chords.controller.songCard', {
     transposeDown: function () {
         this.activeSongCard().transpose( -1 );
     },
-
-    hideTransposeButtons: function () {
-        this.TransposeButtons.up.hide();
-        this.TransposeButtons.down.hide();
-        this.getSongCard().getNavigationBar().hide();
+    updateSongsQuery: function () {
+        this.redirectTo( "Songs" );
     },
 
     /**
@@ -92,18 +108,25 @@ Ext.define( 'chords.controller.songCard', {
     },
     /**
      * This is called when user clicks on a list item
-     *
-     * @param list
-     * @param index
-     * @param el
-     * @param record
      */
-    displaySong: function ( list, index, el, record ) {
+    navigateToSong: function ( list, index, el, record ) {
+        this.redirectTo( 'Songs/' + index + '/' + record.data.nameLatin );
+    },
 
-        var song = this.getApplication().getController( 'songSingle' ).createSong( record );
-        song.config.title = Ext.os.deviceType === "Phone" ? "" : record.data.title;
+    displaySong: function ( index ) {
+        var songSingle = this.getSongSingle();
+        var tabPanel = this.getTabPanel();
+        /**
+         * We want to switch to the SongCard tab first .
+         */
+        tabPanel.setActiveItem( tabPanel.innerIndexOf( this.getSongCard() ) );
         this.displayTransposeButtons();
-        list.getParent().push( song );
+        this.getApplication().getController( 'songSingle' ).createSong( function ( song ) {
+                tabPanel.getActiveItem().push( song );
+            }, songSingle, index
+        );
+
+
     }
 
 

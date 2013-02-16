@@ -9,7 +9,6 @@
 Ext.define( 'chords.controller.songSingle', {
     extend: 'Ext.app.Controller',
     requires: ['chords.view.song.songSingle'],
-
     config: {
         refs: {
             song: 'songsingle'
@@ -21,6 +20,9 @@ Ext.define( 'chords.controller.songSingle', {
         }
     },
 
+    TRANSPOSE_DELIMITER: '-',
+
+
     /**
      * Transposes chord.
      * C -> C#
@@ -28,7 +30,7 @@ Ext.define( 'chords.controller.songSingle', {
      *
      * This is a real basic function, which doesn't know anything about tonalities and bemols.
      *
-     *
+     * @returns Function
      */
     transposeChord: (function () {
         /**
@@ -40,7 +42,7 @@ Ext.define( 'chords.controller.songSingle', {
         /**
          * We need this index to figure out which note comes after which.
          */
-        var noteIndex = ["A", "B", "H", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
+        var noteIndex = ["A", "A#", "H", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
 
         /**
          * We need this index to find position of the note.
@@ -53,23 +55,39 @@ Ext.define( 'chords.controller.songSingle', {
         /**
          * Some synonyms also go here.
          */
-        reverseIndex['A#'] = 1;
+        reverseIndex['B'] = 3;
         reverseIndex['B#'] = 2;
         reverseIndex['H#'] = 3;
         reverseIndex['E#'] = 8;
 
 
         return function ( chord, steps ) {
+            steps = +steps;
             return  chord.replace( noteRegex, function ( note ) {
                 if( !note || typeof reverseIndex[note] === "undefined" ) {
                     return "Can't transpose chord '" + chord + "'";
                 }
+
                 var newIndex = (reverseIndex[note] + steps + 12) % 12;
                 return noteIndex[ newIndex];
             } );
 
         }
     }()),
+
+
+    launch: function () {
+
+        var steps = window.location.hash.substr( 1 ).split( this.TRANSPOSE_DELIMITER )[1] || 0;
+        this.autoTranspose = steps ? function ( song ) {
+            this.autoTranspose = Ext.emptyFn;
+            this._transposeSong( steps, song );
+
+
+        }.bind( this ) : Ext.emptyFn;
+        this.fireEvent( "autoTranspose" );
+
+    },
 
     /**
      * Generates chord diagram.
@@ -149,8 +167,18 @@ Ext.define( 'chords.controller.songSingle', {
             chordName = target.innerHTML;
             Ext.Msg.alert( "Chord " + chordName, this.generateChordDiagram( chordName ), Ext.emptyFn );
         }
+    },
 
 
+    /**
+     * Adds '+NumberOfTones' to the url
+     * We don't want to push it in the history though.
+     * @param steps
+     */
+    updateUrl: function ( steps ) {
+        var link = window.location.hash.substr( 1 ).split( this.TRANSPOSE_DELIMITER );
+        var tones = (+(link[1] || 0) + 12 + steps) % 12;
+        window.location.hash = '#' + link[0] + (tones ? this.TRANSPOSE_DELIMITER + tones : '');
     },
 
     /**
@@ -161,18 +189,61 @@ Ext.define( 'chords.controller.songSingle', {
      * @param singleSong
      */
     transposeSong: function ( steps, singleSong ) {
+        this.updateUrl( steps );
+        this._transposeSong( steps, singleSong );
+    },
+
+    _transposeSong: function ( steps, singleSong ) {
+        console.log( steps );
+
         var chordNodes = singleSong.element.dom.querySelectorAll( ".chord" );
 
         for( var i = 0, l = chordNodes.length; i < l; i++ ) {
             chordNodes[i].innerHTML = this.transposeChord( chordNodes[i].innerHTML, steps );
         }
     },
-    createSong: function ( record ) {
-        var song = Ext.create( 'chords.view.song.songSingle' );
-        song.setRecord( record );
-        song.on( "transposeSong", this.transposeSong, this );
-        song.element.on( "tap", this.displayChord, this );
-        return song;
+
+
+    /**
+     * Creates a songSingle panel ( or use the one provided ), sets record for it and returns
+     *
+     * @param callback
+     * @param song
+     * @param index
+     */
+    createSong: function ( callback, song, index ) {
+
+        var store = Ext.getStore( "songs" );
+
+
+        /**
+         * If the song was not provided, we just create a new instance.
+         */
+        song = song || Ext.create( 'chords.view.song.songSingle' );
+
+
+        store.whenLoaded( function ( store ) {
+            /**
+             * If record index was not provided, we just take random item from the store.
+             */
+            var record;
+            if( typeof index === "undefined" ) {
+                record = store.getRandomItem();
+            } else {
+                record = store.getAt( index );
+            }
+
+            song.setRecord( record );
+            song.on( "transposeSong", this.transposeSong, this );
+            song.element.on( "tap", this.displayChord, this );
+
+            song.config.title = Ext.os.deviceType === "Phone" ? "" : record.data.title;
+            callback( song );
+            this.autoTranspose( song );
+
+        }.bind( this ) );
+
+
     }
 
 
