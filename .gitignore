@@ -19,3 +19,4 @@ Thumbs.db
 .gitignore
 build/
 archive/
+resources/sass/.sass-cache/
