@@ -16,8 +16,8 @@ describe( "Chords transposer", function () {
 
     it( "Transpose basic chords", function () {
         var i, l;
-        var input = ["A", "B", "H", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
-        var expectedResult = ["B", "H", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"];
+        var input = ["A", "A#", "H", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
+        var expectedResult = ["A#", "H", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"];
         for( i = 0, l = input.length; i < l; i++ ) {
             expect( this.controller.transposeChord( input[i], 1 ) ).toBe( expectedResult[i] );
         }
@@ -28,7 +28,7 @@ describe( "Chords transposer", function () {
      */
     it( "Understands unusual chords with #", function () {
         var i, l;
-        var input = ["A#", "B#", "H#", "E#" ];
+        var input = ["A#", "B", "H#", "E#" ];
         var expectedResult = ["H", "C", "C#", "F#"];
         for( i = 0, l = input.length; i < l; i++ ) {
             expect( this.controller.transposeChord( input[i], 1 ) ).toBe( expectedResult[i] );
@@ -47,7 +47,7 @@ describe( "Chords transposer", function () {
     it( "Understands extra bass note", function () {
         var i, l;
         var input = ["A/E", "A#dim/H", "A#dim/C#" ];
-        var expectedResult = ["B/F", "Hdim/C", "Hdim/D"];
+        var expectedResult = ["A#/F", "Hdim/C", "Hdim/D"];
 
         for( i = 0, l = input.length; i < l; i++ ) {
             expect( this.controller.transposeChord( input[i], 1 ) ).toBe( expectedResult[i] );
@@ -56,19 +56,18 @@ describe( "Chords transposer", function () {
     } );
 
     it( "Can transpose up few notes ", function () {
-        expect( this.controller.transposeChord( 'D', 2 ) ).toBe( 'E' );
-        expect( this.controller.transposeChord( 'D', 3 ) ).toBe( 'F' );
+        expect( this.controller.transposeChord( 'A', 2 ) ).toBe( 'H' );
+        expect( this.controller.transposeChord( 'A', 3 ) ).toBe( 'C' );
         expect( this.controller.transposeChord( 'A', 8 ) ).toBe( 'F' );
         expect( this.controller.transposeChord( 'A', 10 ) ).toBe( 'G' );
         expect( this.controller.transposeChord( 'A', 12 ) ).toBe( 'A' );
         expect( this.controller.transposeChord( 'A', 24 ) ).toBe( 'A' );
-        expect( this.controller.transposeChord( this.controller.transposeChord( 'D', 1 ) , 1 ) ).toBe( 'E' );
+        expect( this.controller.transposeChord( this.controller.transposeChord( 'D', 1 ), 1 ) ).toBe( 'E' );
 
     } );
     it( "takes string as a number of steps  ", function () {
         expect( this.controller.transposeChord( 'D', "1" ) ).toBe( 'D#' );
     } );
-
 
 
 } );

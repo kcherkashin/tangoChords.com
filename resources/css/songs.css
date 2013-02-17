@@ -57,16 +57,10 @@
 /**
  * For some weird reason we can't use itemHeight for the grid
  */
-.x-container.songGrid .x-stretched, .x-container.songGrid .x-grid-cell {
+.x-container.songGrid .x-dock-body .x-stretched, .x-container.songGrid .x-dock-body .x-grid-cell {
     height: 2.2em;
     min-height: 2.2em;
     line-height: 2.2em;
 }
 
 
-
-.x-container.myTable .x-stretched, .x-container.myTable .x-grid-cell {
-    height: 2.2em;
-    min-height: 2.2em;
-    line-height: 2.2em;
-}

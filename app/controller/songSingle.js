@@ -55,8 +55,8 @@ Ext.define( 'chords.controller.songSingle', {
         /**
          * Some synonyms also go here.
          */
-        reverseIndex['B'] = 3;
-        reverseIndex['B#'] = 2;
+        reverseIndex['B'] = 2;
+        reverseIndex['B#'] = 3;
         reverseIndex['H#'] = 3;
         reverseIndex['E#'] = 8;
 
@@ -194,8 +194,6 @@ Ext.define( 'chords.controller.songSingle', {
     },
 
     _transposeSong: function ( steps, singleSong ) {
-        console.log( steps );
-
         var chordNodes = singleSong.element.dom.querySelectorAll( ".chord" );
 
         for( var i = 0, l = chordNodes.length; i < l; i++ ) {
