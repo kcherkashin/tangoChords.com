@@ -1,11 +1,14 @@
-$base_color: #ccc;
+$base_color: #ddd;
+$active-color: #080;
 $include-default-icons: false;
-
-
+$base_gradient: nogradient;
 
 @import 'sencha-touch/default/all';
 
 @include pictos-iconmask('home');
+@include pictos-iconmask('refresh');
+@include pictos-iconmask('search');
+@include pictos-iconmask('info');
 
 // You may remove any of the following modules that you
 // do not use in order to create a smaller css file.
