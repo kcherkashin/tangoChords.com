@@ -1,7 +1,8 @@
 $base_color: #ddd;
-$active-color: #080;
+$active-color: #800;
+
 $include-default-icons: false;
-$base_gradient: nogradient;
+$base_gradient: flat;
 
 @import 'sencha-touch/default/all';
 
@@ -85,4 +86,16 @@ $base_gradient: nogradient;
 /*.......| About                       |.......................*/
 .about p {
   margin: 10px 0;
+}
+
+p {
+}
+
+.chordLine {
+  padding: 15px;
+}
+
+.chordLine:nth-child(2n) {
+  background-color: #ddd;
+
 }
