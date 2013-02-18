@@ -10,7 +10,9 @@
 Ext.define( 'chords.view.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'main',
-    id: 'tabPanel',
+    id: 'chordsTabPanel',
+
+
     requires: [
         'chords.view.random.randomCard',
         'chords.view.song.songCard',
@@ -20,7 +22,16 @@ Ext.define( 'chords.view.Main', {
 
     config: {
         tabBarPosition: 'bottom',
+        tabBar: {
+            layout: {
+                type: 'hbox',
+                pack: 'center'
+            }
+        },
+        ui: 'chordsTabPanel',
+
         items: [
+
             { xtype: 'songcard' },
             { xtype: 'randomcard' },
             { xtype: 'filtercard' },

@@ -1,17 +1,16 @@
-$base_color: #ddd;
-$active-color: #800;
+$base_color: #ff723d;
+$active-color: #ff723d;
 
 $include-default-icons: false;
 $base_gradient: flat;
 
 @import 'sencha-touch/default/all';
-
 @include pictos-iconmask('home');
 @include pictos-iconmask('refresh');
 @include pictos-iconmask('search');
 @include pictos-iconmask('info');
 
-@include sencha-tabbar-ui('hello', 'red', 'flat', 'red');
+@include sencha-tabbar-ui('chordsTabPanel', #e6e6e6, 'flat', #ccc);
 
 // You may remove any of the following modules that you
 // do not use in order to create a smaller css file.
@@ -31,15 +30,38 @@ $base_gradient: flat;
 
 // Your custom code goes here...
 
+@mixin chords-iconmask($name) {
+  .x-tab .x-button-icon.#{$name},
+  .x-button .x-button-icon.x-icon-mask.#{$name} {
+    // because of the SDKTOOLS-313 bug will have to use this ugly path
+    // http://www.sencha.com/forum/showthread.php?254946-Theming-Wrong-path-generated-by-theme_images.rb
+    -webkit-mask-image: theme_image($theme-name,  "../../../../../resources/icons/" + $name + ".png");
+  }
+}
+
+@include chords-iconmask("home");
+
 /**
  * For some weird reason we can't use itemHeight for the grid, or $global-row-height, so will have to do it manually.
  * TODO: Figure that out
  */
 
-.x-container.songGrid .x-dock-body .x-stretched, .x-container.songGrid .x-dock-body .x-grid-cell {
+.x-container.songGrid .x-dock-body .x-stretched,
+.x-container.songGrid .x-dock-body .x-grid-cell {
   height: 2.2em;
   min-height: 2.2em;
   line-height: 2.2em;
+  text-align: left !important;
+
+}
+
+.x-container.songGrid .x-list-item-body .x-grid-cell {
+  //border-bottom: 1px #fff solid;
+  //border-left: 1px #d9d9d9 solid;
+}
+
+.x-container.songGrid .x-dock-body  .x-grid-cell-hd {
+  padding-left: 10px !important;
 }
 
 /*.......| Generic Stuff               |.......................*/
@@ -99,5 +121,20 @@ p {
 
 .chordLine:nth-child(2n) {
   background-color: #ddd;
+}
 
+.x-tabbar.x-docked-bottom .x-tab {
+  width: 25%;
+  height: 55px;
+  border-radius: 0;
+  border-right: 1px white solid;
+  border-left: 1px #acacac solid;
+}
+
+.x-tab-active {
+  background-color: #ccc;
+}
+
+.x-tabbar {
+  border-top: 1px #d9501d solid !important;
 }

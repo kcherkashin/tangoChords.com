@@ -11,7 +11,7 @@ Ext.define( 'chords.controller.songCard', {
 
     config: {
         refs: {
-            tabPanel: '#tabPanel',
+            tabPanel: '#chordsTabPanel',
             songLists: 'list',
             songCard: 'songcard',
             songSingle: {
