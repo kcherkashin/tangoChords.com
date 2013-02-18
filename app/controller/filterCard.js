@@ -14,8 +14,7 @@ Ext.define( 'chords.controller.filterCard', {
             filterCard: '#filterCard',
             filter: 'searchfield',
             filterCardTab: '#filterCardTab',
-            search: 'searchfield Search',
-            tabPanel: '#tabPanel'
+            tabPanel: '#chordsTabPanel'
 
         },
         routes: {

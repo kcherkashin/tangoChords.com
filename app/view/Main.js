@@ -34,7 +34,6 @@ Ext.define( 'chords.view.Main', {
 
             { xtype: 'songcard' },
             { xtype: 'randomcard' },
-            { xtype: 'filtercard' },
             { xtype: 'aboutcard' }
         ]
     }

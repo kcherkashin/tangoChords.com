@@ -19,7 +19,8 @@ Ext.define( 'chords.controller.songCard', {
                 xtype: 'songsingle',
                 autoCreate: true
             },
-            songCardTab: '#songCardTab'
+            songCardTab: '#songCardTab',
+
 
         },
 

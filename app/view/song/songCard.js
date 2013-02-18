@@ -30,6 +30,12 @@ Ext.define( 'chords.view.song.songCard', {
             {
                 store: "songs",
                 xtype: "touchgridpanel",
+                items: {
+                    docked: 'top',
+                    xtype: 'searchfield',
+                    label: Ext.os.deviceType === "Phone" ? '' : 'Filter',
+                    name: 'query'
+                },
 
                 columns: [
                     {
@@ -42,13 +48,13 @@ Ext.define( 'chords.view.song.songCard', {
                         header: 'Performer',
                         dataIndex: 'performer',
                         style: 'padding: 0 5px;',
-                        width: '45%'
+                        width: '40%'
                     },
                     {
                         header: 'Genre',
                         dataIndex: 'genre',
                         style: 'padding: 0 5px;',
-                        width: '15%'
+                        width: '20%'
                     }
                 ],
                 features: [

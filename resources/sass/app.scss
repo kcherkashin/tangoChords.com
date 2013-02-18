@@ -56,12 +56,13 @@ $base_gradient: flat;
 }
 
 .x-container.songGrid .x-list-item-body .x-grid-cell {
-  //border-bottom: 1px #fff solid;
-  //border-left: 1px #d9d9d9 solid;
+  border-bottom: 1px #fff solid;
+  border-left: 1px #d9d9d9 solid;
+
 }
 
 .x-container.songGrid .x-dock-body  .x-grid-cell-hd {
-  padding-left: 10px !important;
+  padding: 0 10px !important;
 }
 
 /*.......| Generic Stuff               |.......................*/
@@ -129,12 +130,17 @@ p {
   border-radius: 0;
   border-right: 1px white solid;
   border-left: 1px #acacac solid;
+  background: #e9e9e9;
 }
 
-.x-tab-active {
+.x-tabbar.x-docked-bottom .x-tab-active {
   background-color: #ccc;
 }
 
 .x-tabbar {
   border-top: 1px #d9501d solid !important;
+  .x-button-icon {
+    background: $active-color;
+  }
+
 }
