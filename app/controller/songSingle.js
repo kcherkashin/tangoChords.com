@@ -33,6 +33,7 @@ Ext.define( 'chords.controller.songSingle', {
      * @returns Function
      */
     transposeChord: (function () {
+
         /**
          * This is a regex for the main Note of the chord.
          * e.g. A, A#, F

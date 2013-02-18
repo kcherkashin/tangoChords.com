@@ -11,6 +11,8 @@ $base_gradient: flat;
 @include pictos-iconmask('search');
 @include pictos-iconmask('info');
 
+@include sencha-tabbar-ui('hello', 'red', 'flat', 'red');
+
 // You may remove any of the following modules that you
 // do not use in order to create a smaller css file.
 @include sencha-panel;

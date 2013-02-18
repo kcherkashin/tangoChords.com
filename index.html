@@ -11,54 +11,169 @@
             */
         html, body {
             height: 100%;
-            background-color: #444
+            background-color: #ff723d;
         }
 
-        #appLoadingIndicator {
+        #splash-screen {
             position: absolute;
             top: 50%;
-            margin-top: -15px;
+            left: 50%;
+            width: 300px;
+            margin-left: -150px;
+
+            height: 400px;
+            margin-top: -200px;
+
+        }
+
+        #title {
+            text-shadow: 1px 1px 1px #000000;
+            font-weight: bold;
+            color: white;
+            font-size: 30px;
+            width: 220px;
             text-align: center;
-            width: 100%;
-            height: 30px;
-            -webkit-animation-name: appLoadingIndicator;
-            -webkit-animation-duration: 0.5s;
-            -webkit-animation-iteration-count: infinite;
-            -webkit-animation-direction: linear;
+            margin: 0 auto;
+            font-family: kefa, sans-serif;
+            margin-top: 100px;
+        }
+        #loading {
+            text-shadow: 1px 1px 1px #000000;
+
+            color: white;
+            font-size: 12px;
+            width: 220px;
+            text-align: center;
+            margin: 0 auto;
+            font-family: kefa, sans-serif;
+            margin-top: 100px;
         }
 
-        #appLoadingIndicator > * {
-            background-color: #FFFFFF;
+            /*
+            Set the container for the bar
+            */
+        #loading-bar {
+            height: 20px;
+            width: 200px;
+            padding: 10px;
+            margin: 10px auto 0;
+            background-color: rgba(0, 0, 0, .1);
+            -webkit-border-radius: 25px;
+            -moz-border-radius: 25px;
+            -ms-border-radius: 25px;
+            border-radius: 20px;
+            -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .03), inset 0 1px 0 rgba(0, 0, 0, .1);
+            -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .03), inset 0 1px 0 rgba(0, 0, 0, .1);
+            -ms-box-shadow: 0 1px 0 rgba(255, 255, 255, .03), inset 0 1px 0 rgba(0, 0, 0, .1);
+            box-shadow: 0 1px 0 rgba(255, 255, 255, .03), inset 0 1px 0 rgba(0, 0, 0, .1);
+        }
+
+            /**
+             * Sencha changes default behaviour, which breaks the animation.
+             */
+        #loading-bar {
+            -webkit-box-sizing: content-box !important;
+        }
+
+            /*
+            This is the actual bar with stripes
+            */
+        #loading-bar span {
             display: inline-block;
-            height: 30px;
-            -webkit-border-radius: 15px;
-            margin: 0 5px;
-            width: 30px;
-            opacity: 0.8;
+            height: 100%;
+            width: 100%;
+            border: 1px solid #444;
+            border-bottom-color: #000;
+            background-color: #353535;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            -ms-border-radius: 20px;
+            border-radius: 20px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            box-sizing: border-box;
+            background-image: -webkit-linear-gradient(-45deg, rgba(47, 47, 47, 1) 25%, transparent 25%, transparent 50%, rgba(47, 47, 47, 1) 50%, rgba(47, 47, 47, 1) 75%, transparent 75%, transparent);
+            background-image: -moz-linear-gradient(-45deg, rgba(47, 47, 47, 1) 25%, transparent 25%, transparent 50%, rgba(47, 47, 47, 1) 50%, rgba(47, 47, 47, 1) 75%, transparent 75%, transparent);
+            background-image: -ms-linear-gradient(-45deg, rgba(47, 47, 47, 1) 25%, transparent 25%, transparent 50%, rgba(47, 47, 47, 1) 50%, rgba(47, 47, 47, 1) 75%, transparent 75%, transparent);
+            background-image: linear-gradient(-45deg, rgba(47, 47, 47, 1) 25%, transparent 25%, transparent 50%, rgba(47, 47, 47, 1) 50%, rgba(47, 47, 47, 1) 75%, transparent 75%, transparent);
+            -webkit-background-size: 50px 50px;
+            -moz-background-size: 50px 50px;
+            -ms-background-size: 50px 50px;
+            background-size: 50px 50px;
+            -webkit-animation: move 2s linear infinite;
+            -moz-animation: move 2s linear infinite;
+            -ms-animation: move 2s linear infinite;
+            animation: move 2s linear infinite;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            -ms-border-radius: 20px;
+            border-radius: 20px;
+            overflow: hidden;
+            -webkit-box-shadow: inset 0 10px 0 rgba(255, 255, 255, .2);
+            -moz-box-shadow: inset 0 10px 0 rgba(255, 255, 255, .2);
+            -ms-box-shadow: inset 0 10px 0 rgba(255, 255, 255, .2);
+            box-shadow: inset 0 10px 0 rgba(255, 255, 255, .2);
         }
 
-        @-webkit-keyframes appLoadingIndicator {
+            /*
+            Animate the stripes
+            */
+        @-webkit-keyframes move {
             0% {
-                opacity: 0.8
-            }
-            50% {
-                opacity: 0
+                background-position: 0 0;
             }
             100% {
-                opacity: 0.8
+                background-position: 50px 50px;
             }
         }
+
+        @-moz-keyframes move {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 50px 50px;
+            }
+        }
+
+        @-ms-keyframes move{
+          0% {
+            background-position: 0 0;
+          }
+          100% {
+            background-position: 50px 50px;
+          }
+        }
+
+        @keyframes move {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 50px 50px;
+            }
+        }
+
     </style>
-    
+
     <link rel="stylesheet" href="resources/css/Ext.ux.grid.View.css">
     <!-- The line below must be kept intact for Sencha Command to build your application -->
     <script id="microloader" type="text/javascript" src="touch/microloader/development.js"></script>
 </head>
 <body>
 <div id="appLoadingIndicator">
-    <div></div>
-    <div></div>
-    <div></div>
+    <div id="splash-screen">
+        <h1 id="title">Tango chords for guitar</h1>
+        <h1 id="loading">Loading...</h1>
+
+
+        <div id="loading-bar">
+            <span></span>
+        </div>
+    </div>
 </div>
 </body>
 </html>
+
+
