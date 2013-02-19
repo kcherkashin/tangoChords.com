@@ -4,7 +4,7 @@
  *
  */
 
-"use strict";
+'use strict';
 
 Ext.define( 'chords.view.about.aboutCard', {
     extend: 'Ext.Container',
@@ -21,16 +21,16 @@ Ext.define( 'chords.view.about.aboutCard', {
         scrollable: 'vertical',
 
         tab: {
-            title: 'About',
-            iconCls: 'info'
+            iconCls: 'cross',
+            title: 'about'
         }
 
     },
     initialize: function () {
         Ext.Ajax.request( {
-            url: "app/data/about.html",
-            success: function ( responce ) {
-                this.setHtml( responce.responseText );
+            url: 'app/data/about.html',
+            success: function ( response ) {
+                this.setHtml( response.responseText );
             },
             scope: this
         } );

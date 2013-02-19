@@ -22,9 +22,9 @@ Ext.define( 'chords.view.song.songCard', {
     config: {
         cls: 'songGrid',
         tab: {
-            title: 'Songs',
             iconCls: 'home',
-            id: 'songCardTab'
+            id: 'songCardTab',
+            title: 'Songs'
         },
         items: [
             {

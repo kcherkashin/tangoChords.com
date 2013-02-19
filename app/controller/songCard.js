@@ -19,9 +19,7 @@ Ext.define( 'chords.controller.songCard', {
                 xtype: 'songsingle',
                 autoCreate: true
             },
-            songCardTab: '#songCardTab',
-
-
+            songCardTab: '#songCardTab'
         },
 
         routes: {
@@ -89,8 +87,8 @@ Ext.define( 'chords.controller.songCard', {
 
         if( !this.TransposeButtons ) {
             this.TransposeButtons = {
-                up: Ext.create( 'Ext.Button', {text: 'Transpose up', align: 'right'} ),
-                down: Ext.create( 'Ext.Button', {text: 'Transpose down', align: 'right'} )
+                up: Ext.create( 'Ext.Button', { iconCls: 'arrow-up', iconMask: true, align: 'right'} ),
+                down: Ext.create( 'Ext.Button', { iconCls: 'arrow-down', iconMask: true, align: 'right'} )
             };
 
             navBar = this.getSongCard().getNavigationBar();
