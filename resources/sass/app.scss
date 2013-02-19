@@ -1,8 +1,6 @@
 $base_color: #ff723d;
 $active-color: #ff723d;
-$images_path=
-"../../../../../resources/images/"
-;
+$images_path: "../../../../../resources/images/";
 
 $include-default-icons: false;
 $base_gradient: flat;
@@ -162,8 +160,12 @@ p {
       height: 1.7em;
     }
   }
+  .x-button-back.x-button-pressing {
+    background: #666;
+  }
   .x-button-back {
-    height: 1.6em;
+    content: "BACK"
+    height:1.6 em;
     min-height: 1.6em;
     border-radius: 4px;
     background: #000;
@@ -173,7 +175,11 @@ p {
     font-weight: 400;
   }
 
-  .x-button-forward::before, .x-button-forward::after, .x-button-back::before, .x-button-back::after {
+  .x-button-back.x-button-pressing::before, .x-button-back.x-button-pressing::after {
+    background: #666 !important;
+
+  }
+  .x-button-back::before, .x-button-back::after {
     background: #000 !important;
   }
 }

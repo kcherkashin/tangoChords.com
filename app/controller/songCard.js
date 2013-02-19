@@ -51,7 +51,6 @@ Ext.define( 'chords.controller.songCard', {
 
     },
     showNavBar: function () {
-        
         this.getFilter().hide();
         this.getSongCard().getNavigationBar().show();
     },
