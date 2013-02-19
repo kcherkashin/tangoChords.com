@@ -27,15 +27,17 @@ Ext.define( 'chords.view.song.songCard', {
             title: 'Songs'
         },
         items: [
+
+            {
+                docked: 'top',
+                xtype: 'searchfield',
+                label: Ext.os.deviceType === "Phone" ? '' : 'Filter',
+                name: 'query'
+            },
             {
                 store: "songs",
                 xtype: "touchgridpanel",
-                items: {
-                    docked: 'top',
-                    xtype: 'searchfield',
-                    label: Ext.os.deviceType === "Phone" ? '' : 'Filter',
-                    name: 'query'
-                },
+
 
                 columns: [
                     {

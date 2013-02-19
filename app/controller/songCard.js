@@ -46,9 +46,8 @@ Ext.define( 'chords.controller.songCard', {
      * We want to hide navigation bar
      */
     hideNavBar: function ( songCard ) {
-        if( Ext.os.deviceType === "Phone" ) {
-            songCard.getNavigationBar().hide();
-        }
+        songCard.getNavigationBar().hide();
+
     },
     showNavBar: function () {
         this.getSongCard().getNavigationBar().show();

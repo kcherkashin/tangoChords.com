@@ -77,8 +77,13 @@ Ext.define( 'chords.controller.filterCard', {
      * This is called when user types something in the search field
      */
     updateFilterQuery: function () {
+
         var query = this.getFilter().getComponent( "Search" ).getValue().toLowerCase();
-        this.redirectTo( 'Filter/' + query );
+        if( query.length ) {
+            this.redirectTo( 'Filter/' + query );
+        } else {
+            this.redirectTo( 'Songs' );
+        }
     }
 
 

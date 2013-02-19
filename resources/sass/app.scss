@@ -1,5 +1,8 @@
 $base_color: #ff723d;
 $active-color: #ff723d;
+$images_path=
+"../../../../../resources/images/"
+;
 
 $include-default-icons: false;
 $base_gradient: flat;
@@ -17,12 +20,12 @@ $tab-icon-color: #666;
 // do not use in order to create a smaller css file.
 @include sencha-panel;
 @include sencha-buttons;
-@include sencha-sheet;
-@include sencha-picker;
+//@include sencha-sheet;
+//@include sencha-picker;
 @include sencha-tabs;
 @include sencha-toolbar;
-@include sencha-toolbar-forms;
-@include sencha-indexbar;
+//@include sencha-toolbar-forms;
+//@include sencha-indexbar;
 @include sencha-list;
 @include sencha-layout;
 @include sencha-carousel;
@@ -35,7 +38,7 @@ $tab-icon-color: #666;
   .x-tab .x-button-icon.#{$name},
   .x-button .x-button-icon.x-icon-mask.#{$name} {
     // because of the SDKTOOLS-313 bug have to use this ugly path
-    -webkit-mask-image: theme_image($theme-name,  "../../../../../resources/images/" + $name + ".png");
+    -webkit-mask-image: theme_image($theme-name,  $images_path + $name + ".png");
   }
 }
 
@@ -77,7 +80,7 @@ $tab-icon-color: #666;
 }
 
 .x-phone {
-  font-size: 80% !important;
+  font-size: 90% !important;
 }
 
 .touchgridpanel .x-grid-cell {
@@ -142,5 +145,35 @@ p {
     background: $tab-icon-color;
     margin-top: 8px;
   }
+  .x-button-label {
+    display: none;
 
+  }
+}
+
+.x-navigation-bar {
+  .x-button {
+    border: 0;
+    background: transparent;
+    .x-button-icon {
+      -webkit-mask-size: 1.6em;
+      -webkit-mask-repeat: no-repeat;
+      width: 1.7em;
+      height: 1.7em;
+    }
+  }
+  .x-button-back {
+    height: 1.6em;
+    min-height: 1.6em;
+    border-radius: 4px;
+    background: #000;
+
+  }
+  .x-button-label {
+    font-weight: 400;
+  }
+
+  .x-button-forward::before, .x-button-forward::after, .x-button-back::before, .x-button-back::after {
+    background: #000 !important;
+  }
 }
