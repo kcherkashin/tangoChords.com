@@ -19,7 +19,8 @@ Ext.define( 'chords.controller.songCard', {
                 xtype: 'songsingle',
                 autoCreate: true
             },
-            songCardTab: '#songCardTab'
+            songCardTab: '#songCardTab',
+            filter: 'searchfield'
         },
 
         routes: {
@@ -35,7 +36,7 @@ Ext.define( 'chords.controller.songCard', {
             },
             songCard: {
                 activate: 'hideNavBar',
-                pop: 'updateSongsQuery',
+                pop: 'showSongsList',
                 push: 'showNavBar'
             }
         }
@@ -50,6 +51,8 @@ Ext.define( 'chords.controller.songCard', {
 
     },
     showNavBar: function () {
+        
+        this.getFilter().hide();
         this.getSongCard().getNavigationBar().show();
     },
 
@@ -74,7 +77,8 @@ Ext.define( 'chords.controller.songCard', {
     transposeDown: function () {
         this.activeSongCard().transpose( -1 );
     },
-    updateSongsQuery: function () {
+    showSongsList: function () {
+        this.getFilter().show()
         this.redirectTo( "Songs" );
     },
 

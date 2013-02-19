@@ -11,15 +11,12 @@ Ext.define( 'chords.controller.filterCard', {
 
     config: {
         refs: {
-            filterCard: '#filterCard',
             filter: 'searchfield',
             filterCardTab: '#filterCardTab',
             tabPanel: '#chordsTabPanel'
-
         },
         routes: {
-            'Filter/:query': 'handleFilterQuery',
-            'Filter/:query/:id/songName': 'handleFilterQuery'
+            'Filter/:query': 'handleFilterQuery'
         },
         control: {
             filterCardTab: {
@@ -36,21 +33,15 @@ Ext.define( 'chords.controller.filterCard', {
     clearFilter: function () {
         Ext.getStore( 'songs' ).clearFilter();
     },
-    displaySong: function () {
-
-    },
 
 
     handleFilterQuery: function ( query ) {
-        this.getTabPanel().setActiveItem( this.getTabPanel().innerIndexOf( this.getFilterCard() ) );
         var search = this.getFilter().getComponent( "Search" );
         var queryFieldValue = search.getValue().toLowerCase();
         if( queryFieldValue !== query ) {
             search.setValue( query );
         }
         this.filterList( query );
-
-
     },
 
     filterList: function ( query ) {
@@ -82,6 +73,7 @@ Ext.define( 'chords.controller.filterCard', {
         if( query.length ) {
             this.redirectTo( 'Filter/' + query );
         } else {
+            this.clearFilter();
             this.redirectTo( 'Songs' );
         }
     }
