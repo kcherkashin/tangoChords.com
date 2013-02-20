@@ -19,13 +19,13 @@ Ext.define( 'chords.controller.main', {
         }
     },
     switchTab: function ( index, page ) {
-        var panel = this.getTabPanel();
+        //var panel = this.getTabPanel();
         //if( panel.getActiveItem() !== page ) {
         //    panel.setActiveItem( index );
         // }
 
-        var tab = panel.query( "tab[title=" + page.getTab().title + "]" )[0];
-        tab.fireEvent( "tap", tab );
+        // var tab = panel.query( "tab[title=" + page.getTab().title + "]" )[0];
+        //tab.fireEvent( "tap", tab );
     },
     /**
      * Returns true is the url starts with the tab name. e.g.
@@ -40,6 +40,7 @@ Ext.define( 'chords.controller.main', {
 
     updateUrl: function () {
         var newUrl = this.getTabPanel().getActiveItem().getTab().title;
+        console.log( "U",newUrl );
         if( !this.isActiveTab( newUrl ) ) {
             this.redirectTo( newUrl );
         }

@@ -4,7 +4,7 @@
  *
  */
 
-"use strict";
+'use strict';
 
 Ext.define( 'chords.controller.songCard', {
     extend: 'Ext.app.Controller',
@@ -14,6 +14,7 @@ Ext.define( 'chords.controller.songCard', {
             tabPanel: '#chordsTabPanel',
             songLists: 'list',
             songCard: 'songcard',
+            randomCardTab: '#randomCardTab',
             songSingle: {
                 selector: 'songsingle',
                 xtype: 'songsingle',
@@ -24,10 +25,14 @@ Ext.define( 'chords.controller.songCard', {
         },
 
         routes: {
-            'Songs/:id/:songName': 'displaySong'
+            'Songs/:id/:songName': 'displaySong',
+            'Random': 'showRandomSong'
         },
 
         control: {
+            randomCardTab: {
+                tap: 'getRandomSong'
+            },
             songCardTab: {
                 tap: 'openSongCard'
             },
@@ -42,7 +47,16 @@ Ext.define( 'chords.controller.songCard', {
         }
     },
 
+    showRandomSong: function () {
+        this.redirectTo("Songs/2/2");
+        console.log( "SRS" );
+    },
 
+    getRandomSong: function () {
+        this.redirectTo("Songs/2/2");
+
+        console.log( 'GRS' );
+    },
     /**
      * We want to hide navigation bar
      */
@@ -66,8 +80,8 @@ Ext.define( 'chords.controller.songCard', {
     },
 
     activeSongCard: function () {
-        console.log( this.getSongCard().query( "songsingle" ) );
-        return this.getSongCard().query( "songsingle" )[0];
+        console.log( this.getSongCard().query( 'songsingle' ) );
+        return this.getSongCard().query( 'songsingle' )[0];
     },
 
     transposeUp: function () {
@@ -77,8 +91,8 @@ Ext.define( 'chords.controller.songCard', {
         this.activeSongCard().transpose( -1 );
     },
     showSongsList: function () {
-        this.getFilter().show()
-        this.redirectTo( "Songs" );
+        this.getFilter().show();
+        this.redirectTo( 'Songs' );
     },
 
     /**
@@ -98,8 +112,8 @@ Ext.define( 'chords.controller.songCard', {
             navBar.add( this.TransposeButtons.down );
 
 
-            this.TransposeButtons.up.on( "tap", this.transposeUp, this );
-            this.TransposeButtons.down.on( "tap", this.transposeDown, this );
+            this.TransposeButtons.up.on( 'tap', this.transposeUp, this );
+            this.TransposeButtons.down.on( 'tap', this.transposeDown, this );
 
         } else {
 
@@ -107,6 +121,7 @@ Ext.define( 'chords.controller.songCard', {
             this.TransposeButtons.down.show();
         }
     },
+
     /**
      * This is called when user clicks on a list item
      */
@@ -120,6 +135,7 @@ Ext.define( 'chords.controller.songCard', {
         /**
          * We want to switch to the SongCard tab first .
          */
+        console.log( "SA" );
         tabPanel.setActiveItem( tabPanel.innerIndexOf( this.getSongCard() ) );
         this.displayTransposeButtons();
         this.getApplication().getController( 'songSingle' ).createSong( function ( song ) {
