@@ -94,16 +94,20 @@ Ext.define( 'chords.controller.songCard', {
     },
 
     displaySong: function ( index ) {
-        var songSingle = this.getSongSingle();
+        var song = this.getSongSingle();
         var tabPanel = this.getTabPanel();
+        var store = Ext.getStore( 'songs' );
         /**
          * We want to switch to the SongCard tab first .
          */
         tabPanel.setActiveItem( tabPanel.innerIndexOf( this.getSongCard() ) );
 
-        this.getApplication().getController( 'songSingle' ).createSong( function ( song ) {
+        store.whenLoaded( function ( store ) {
+            var record = store.getAt( index );
+            song.setRecord( record );
+            song.config.title = '';
             this.getSongCard().push( song );
-        }.bind( this ), songSingle, index );
+        }.bind( this ) );
 
 
     }
