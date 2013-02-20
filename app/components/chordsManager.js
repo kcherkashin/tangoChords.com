@@ -129,10 +129,9 @@ Ext.define( "chords.components.chordsManager", {
 
         for( var i = 0, l = lines.length - 1; i < l; i++ ) {
             if( lines[i] == "" ) {
-                result += '<br><br>';
+                result += '<div class = "chordLine"></div>';
                 continue;
             }
-
 
             result += '<div class = "chordLine">';
             if( !this.isChordLine( lines[i + 1] ) && this.isChordLine( lines[i] ) ) {

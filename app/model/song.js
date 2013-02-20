@@ -46,22 +46,19 @@
                         return record.data.performer + " - " + record.data.name;
                     }
                 },
+
                 {
                     name: 'genre',
                     convert: function ( v, record ) {
-                        var genre = record.data.genre || 'Tango';
-
-                        if( Ext.os.deviceType === "Phone" ) {
-                            genre = genre.substr( 0, 1 );
-                        }
-
-                        return genre
+                        return v || 'Tango';
                     }
-                },
-                {
-                    name: 'genreFull',
+                }, {
+                    name: 'genreShort',
                     convert: function ( v, record ) {
-                        return record.data.genre || 'Tango';
+                        var genre = record.data.genre || 'Tango';
+                        console.log( genre );
+                        return  genre.substr( 0, 1 ).toUpperCase();
+
                     }
                 },
                 {

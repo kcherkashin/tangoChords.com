@@ -68,10 +68,8 @@ Ext.define( 'chords.controller.songCard', {
 
     openSongCard: function () {
         var songCard = this.getSongCard();
-        if( songCard ) {
-            songCard.pop();
-            this.getSongCard().getNavigationBar().hide();
-        }
+        songCard.pop();
+        songCard.getNavigationBar().hide();
     },
 
     transposeUp: function () {
@@ -96,16 +94,15 @@ Ext.define( 'chords.controller.songCard', {
     displaySong: function ( index ) {
         var song = this.getSongSingle();
         var tabPanel = this.getTabPanel();
-        var store = Ext.getStore( 'songs' );
+
         /**
          * We want to switch to the SongCard tab first .
          */
         tabPanel.setActiveItem( tabPanel.innerIndexOf( this.getSongCard() ) );
 
-        store.whenLoaded( function ( store ) {
+        Ext.getStore( 'songs' ).whenLoaded( function ( store ) {
             var record = store.getAt( index );
             song.setRecord( record );
-            song.config.title = '';
             this.getSongCard().push( song );
         }.bind( this ) );
 

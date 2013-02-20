@@ -23,7 +23,8 @@ Ext.define( 'chords.view.song.songCard', {
         navigationBar: {
             items: [
                 { iconCls: 'arrow-up', iconMask: true, align: 'right', id: 'transposeUp'},
-                { iconCls: 'arrow-up', iconMask: true, align: 'right', id: 'transposeDown'}]
+                { iconCls: 'arrow-up', iconMask: true, align: 'right', id: 'transposeDown'}
+            ]
         },
         cls: 'songGrid',
         tab: {
@@ -56,13 +57,16 @@ Ext.define( 'chords.view.song.songCard', {
                         header: 'Performer',
                         dataIndex: 'performer',
                         style: 'padding: 0 5px;',
-                        width: '40%'
+                        width: '50%'
                     },
                     {
-                        header: 'Genre',
-                        dataIndex: 'genre',
-                        style: 'padding: 0 5px;',
-                        width: '20%'
+                        header: '',
+                        renderer: function ( genre, record ) {
+                            return '<span class = "genre ' + record.genre.toLowerCase() + '">' + genre + '</span>';
+                        },
+                        dataIndex: 'genreShort',
+                        style: 'padding: 0 5px;text-align:center;',
+                        width: '10%'
                     }
                 ],
                 features: [

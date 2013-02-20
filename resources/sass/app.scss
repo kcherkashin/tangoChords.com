@@ -1,5 +1,5 @@
 $base_color: #ff723d;
-$active-color: #ff723d;
+$active-color: #ddd;
 $images_path: "../../../../../resources/images/";
 
 $include-default-icons: false;
@@ -50,12 +50,19 @@ $tab-icon-color: #666;
  * TODO: Figure that out
  */
 
+.x-container.songGrid {
+  .x-dock-body {
+    x-grid-cell {
+      height: 2.2em;
+      min-height: 2.2em;
+      line-height: 2.2em;
+      text-align: left !important;
+    }
+  }
+}
 .x-container.songGrid .x-dock-body .x-stretched,
 .x-container.songGrid .x-dock-body .x-grid-cell {
-  height: 2.2em;
-  min-height: 2.2em;
-  line-height: 2.2em;
-  text-align: left !important;
+
 
 }
 
@@ -224,5 +231,18 @@ p {
 .x-field-search .x-field-input::before {
   @include chords-icon("search");
   background: #a2bf67;
+
+}
+
+.genre {
+  padding: 4px;
+  border: 1px #333 solid;
+
+  &.vals {
+    background: #cc4;
+  }
+  &.milonga {
+    background: #4cc;
+  }
 
 }

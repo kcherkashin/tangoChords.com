@@ -16,6 +16,11 @@ Ext.define( 'chords.view.song.songSingle', {
         transpose: function ( steps ) {
             this.fireEvent( "transposeSong", steps, this );
         },
+        applyRecord: function ( record ) {
+
+            return record;
+        },
+
 
         config: {
             scrollable: 'vertical',
