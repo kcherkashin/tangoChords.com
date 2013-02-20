@@ -4,7 +4,7 @@
  *
  */
 
-"use strict";
+'use strict';
 
 Ext.define( 'chords.view.song.songCard', {
     extend: 'Ext.NavigationView',
@@ -12,13 +12,19 @@ Ext.define( 'chords.view.song.songCard', {
     id: 'songCard',
 
     requires: [
-        "Ext.field.Search",
-        "Ext.dataview.List",
-        "Ext.ux.touch.grid.List",
-        "Ext.ux.touch.grid.feature.Feature",
-        "Ext.ux.touch.grid.feature.Sorter"
+        'Ext.field.Search',
+        'Ext.dataview.List',
+        'Ext.ux.touch.grid.List',
+        'Ext.ux.touch.grid.feature.Feature',
+        'Ext.ux.touch.grid.feature.Sorter'
     ],
     config: {
+
+        navigationBar: {
+            items: [
+                { iconCls: 'arrow-up', iconMask: true, align: 'right', id: 'transposeUp'},
+                { iconCls: 'arrow-up', iconMask: true, align: 'right', id: 'transposeDown'}]
+        },
         cls: 'songGrid',
         tab: {
             iconCls: 'home',
@@ -30,13 +36,13 @@ Ext.define( 'chords.view.song.songCard', {
             {
                 docked: 'top',
                 xtype: 'searchfield',
-                label: Ext.os.deviceType === "Phone" ? '' : 'Filter',
+                label: Ext.os.deviceType === 'Phone' ? '' : 'Filter',
                 placeHolder: 'Search',
                 name: 'query'
             },
             {
-                store: "songs",
-                xtype: "touchgridpanel",
+                store: 'songs',
+                xtype: 'touchgridpanel',
 
 
                 columns: [
@@ -65,7 +71,7 @@ Ext.define( 'chords.view.song.songCard', {
                         launchFn: 'initialize'
                     }
                 ],
-                title: "Tango chords for guitar"
+                title: 'Tango chords for guitar'
 
             }
         ]

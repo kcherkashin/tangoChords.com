@@ -21,7 +21,9 @@ Ext.define( 'chords.controller.songCard', {
                 autoCreate: true
             },
             songCardTab: '#songCardTab',
-            filter: 'searchfield'
+            filter: 'searchfield',
+            transposeUp: '#transposeUp',
+            transposeDown: '#transposeDown'
         },
 
         routes: {
@@ -31,11 +33,16 @@ Ext.define( 'chords.controller.songCard', {
         },
 
         control: {
+            transposeUp: {
+                tap: 'transposeUp'
+            },
+            transposeDown: {
+                tap: 'transposeDown'
+            },
             songLists: {
                 itemtap: 'navigateToSong'
             },
             songCard: {
-                activate: 'hideNavBar',
                 pop: 'showSongsList',
                 push: 'showNavBar'
             }
@@ -44,9 +51,8 @@ Ext.define( 'chords.controller.songCard', {
 
     goToRandomSong: function () {
         var me = this;
-        Ext.getStore( "songs" ).whenLoaded( function () {
+        Ext.getStore( 'songs' ).whenLoaded( function () {
                 var item = this.getRandomItem();
-
                 me.redirectTo( 'Songs/' + item.id + '/' + item.data.name )
             }
         );
@@ -54,13 +60,7 @@ Ext.define( 'chords.controller.songCard', {
 
     },
 
-    /**
-     * We want to hide navigation bar
-     */
-    hideNavBar: function ( songCard ) {
-        //    songCard.getNavigationBar().hide();
 
-    },
     showNavBar: function () {
         this.getFilter().hide();
         this.getSongCard().getNavigationBar().show();
@@ -91,32 +91,6 @@ Ext.define( 'chords.controller.songCard', {
         this.redirectTo( 'Songs' );
     },
 
-    /**
-     * Create (or show if already created) transpose buttons.
-     */
-    displayTransposeButtons: function () {
-        var navBar;
-
-        if( !this.TransposeButtons ) {
-            this.TransposeButtons = {
-                up: Ext.create( 'Ext.Button', { iconCls: 'arrow-up', iconMask: true, align: 'right'} ),
-                down: Ext.create( 'Ext.Button', { iconCls: 'arrow-down', iconMask: true, align: 'right'} )
-            };
-
-            navBar = this.getSongCard().getNavigationBar();
-            navBar.add( this.TransposeButtons.up );
-            navBar.add( this.TransposeButtons.down );
-
-
-            this.TransposeButtons.up.on( 'tap', this.transposeUp, this );
-            this.TransposeButtons.down.on( 'tap', this.transposeDown, this );
-
-        } else {
-
-            this.TransposeButtons.up.show();
-            this.TransposeButtons.down.show();
-        }
-    },
 
     /**
      * This is called when user clicks on a list item
@@ -132,7 +106,7 @@ Ext.define( 'chords.controller.songCard', {
          * We want to switch to the SongCard tab first .
          */
         tabPanel.setActiveItem( tabPanel.innerIndexOf( this.getSongCard() ) );
-        this.displayTransposeButtons();
+
         this.getApplication().getController( 'songSingle' ).createSong( function ( song ) {
             this.getSongCard().push( song );
         }.bind( this ), songSingle, index );
