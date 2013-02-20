@@ -11,6 +11,7 @@
 Ext.define( 'chords.view.song.songSingle', {
         extend: 'Ext.Container',
         xtype: 'songsingle',
+
         requires: ["chords.components.chordsManager"],
 
         transpose: function ( steps ) {
@@ -23,6 +24,7 @@ Ext.define( 'chords.view.song.songSingle', {
 
 
         config: {
+            cls: 'single-song',
             scrollable: 'vertical',
             tpl: new Ext.XTemplate(
                 '<h1 class = "song-title">{title}</h1>',

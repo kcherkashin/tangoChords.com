@@ -1,17 +1,15 @@
 $base_color: #ff723d;
 $active-color: #ddd;
 $images_path: "../../../../../resources/images/";
-
 $include-default-icons: false;
 $base_gradient: flat;
 $tab-icon-color: #666;
+$list-row-color: #fff;
+$even-list-row-color: #dedede;
+$line-color: #dedede;
+$even-line-color: #dedede;
 
 @import 'sencha-touch/default/all';
-//@include pictos-iconmask('home');
-//@include pictos-iconmask('refresh');
-//@include pictos-iconmask('search');
-//@include pictos-iconmask('info');
-
 @include sencha-tabbar-ui('chordsTabPanel', #e6e6e6, 'flat', #ccc);
 @include sencha-panel;
 @include sencha-buttons;
@@ -36,7 +34,6 @@ $tab-icon-color: #666;
 @mixin chords-icon($name) {
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-image: theme_image($theme-name,  $images_path + $name + ".png");
-
 }
 
 @include chords-iconmask("home");
@@ -44,6 +41,11 @@ $tab-icon-color: #666;
 @include chords-iconmask("cross");
 @include chords-iconmask("arrow-up");
 @include chords-iconmask("arrow-down");
+
+/*.......| Some platform adjustments   |.......................*/
+.x-phone {
+  font-size: 90% !important;
+}
 
 /*.......| Grid                        |.......................*/
 .x-container.songGrid {
@@ -54,6 +56,7 @@ $tab-icon-color: #666;
     */
 
     .x-grid-cell, .x-dock-horizontal {
+      font-weight: 400 !important;
       height: 2.2em;
       min-height: 2.2em;
       line-height: 2.2em;
@@ -67,11 +70,23 @@ $tab-icon-color: #666;
   }
   .x-list-item-body {
     .x-grid-cell {
+
       border-bottom: 1px #fff solid;
       border-left: 1px #d9d9d9 solid;
       background: #f3f3f3 !important;
       &.genreColumn {
         text-align: center !important;
+        .genre {
+          padding: 4px;
+          border: 1px #333 solid;
+          &.vals {
+            background: #cc4;
+          }
+          &.milonga {
+            background: #4cc;
+          }
+
+        }
       }
     }
   }
@@ -86,32 +101,49 @@ $tab-icon-color: #666;
 
 }
 
-/*.......| Generic Stuff               |.......................*/
-.x-desktop  .info {
-  width: 960px;
-  margin: 0 auto;
-  background: #f9f9f9;
+/*.......| Search field                |.......................*/
+.x-field-search .x-field-input::before {
+  @include chords-icon("search");
+  background: #a2bf67;
 }
 
-.x-phone {
-  font-size: 90% !important;
-}
+/*.......| Single Song                 |.......................*/
+.single-song {
+  h1 {
+    text-align: center;
+    margin: 0 auto;
+    color: #000 !important;
+    outline: 1px #fff solid;
+    border-bottom: 1px #dedede solid;;
+    font-weight: 400;
+    padding: 10px 15px;
+    color: #000;
+    font-size: 1.1em;
+    background: #f5f5f5;
+  }
+  /*...............| Lines                        |...............*/
+  .chordLine {
+    background-color: #f5f5f5;
+    padding: 7px 15px;
+    border-bottom: 1px #fff solid;
+    border-top: 1px #dedede solid;
+    &:nth-child(2n) {
+      background-color: #e6e6e6
+    }
+    /*...............| Chords                      |...............*/
+    .chords {
+      margin-bottom: 7px;
+      margin-top: 5px;
+      cursor: pointer;
 
-.touchgridpanel .x-grid-cell {
-  font-weight: 400 !important;
-}
+      .chord {
+        margin-left: -10px;
+        padding: 2px 7px;
+        background: #ffda24;
+      }
+    }
+  }
 
-h1.song-title {
-  text-align: center;
-  margin: 0 auto;
-  color: #000 !important;
-  outline: 1px #fff solid;
-  border-bottom: 1px #dedede solid;;
-  font-weight: 400;
-  padding: 10px 15px;
-  color: #000;
-  font-size: 1.1em;
-  background: #f5f5f5;
 }
 
 /*.......| Chords                      |.......................*/
@@ -120,57 +152,32 @@ h1.song-title {
   letter-spacing: 1.5px;
 }
 
-.text-line {
-  margin-top: 5px;
-  margin-bottom: 15px;
-}
-
 /*.......| About                       |.......................*/
 .about p {
   margin: 10px 0;
 }
 
-p {
-}
-
-.chordLine {
-  background-color: #f5f5f5;
-  padding: 7px 15px;
-  border-bottom: 1px #fff solid;
-  border-top: 1px #dedede solid;
-}
-
-.chords {
-  margin-bottom: 7px;
-  margin-top: 5px;
-  cursor: pointer;
-
-  .chord {
-    margin-left: -10px;
-    padding: 2px 7px;
-    background: #ffda24;
+/*.......| Bottom tab bar              |.......................*/
+.x-tabbar.x-docked-bottom {
+  .x-tab {
+    width: 25%;
+    height: 55px;
+    border-radius: 0;
+    border-right: 1px white solid;
+    border-left: 1px #acacac solid;
+    background: #e9e9e9;
   }
+  .x-tab-active {
+    background-color: #ccc;
+  }
+
 }
 
-.chordLine:nth-child(2n) {
-  background-color: #e6e6e6
-}
-
-.x-tabbar.x-docked-bottom .x-tab {
-  width: 25%;
-  height: 55px;
-  border-radius: 0;
-  border-right: 1px white solid;
-  border-left: 1px #acacac solid;
-  background: #e9e9e9;
-}
-
-.x-tabbar.x-docked-bottom .x-tab-active {
-  background-color: #ccc;
-}
+/*.......| Top Tab bar                 |.......................*/
 
 #chordsTabPanel .x-tabbar {
-  border-top: 1px #d9501d solid !important;
+
+  border-top: 1px #f00 solid !important;
   .x-button-icon {
     background: $tab-icon-color;
     margin-top: 0px;
@@ -181,6 +188,7 @@ p {
   }
 }
 
+/*.......| Top toolbar                 |.......................*/
 .x-toolbar {
   .x-button {
     border: 0;
@@ -230,21 +238,4 @@ p {
   }
 }
 
-.x-field-search .x-field-input::before {
-  @include chords-icon("search");
-  background: #a2bf67;
 
-}
-
-.genre {
-  padding: 4px;
-  border: 1px #333 solid;
-
-  &.vals {
-    background: #cc4;
-  }
-  &.milonga {
-    background: #4cc;
-  }
-
-}
