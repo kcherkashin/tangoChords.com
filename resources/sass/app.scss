@@ -40,6 +40,10 @@ $tab-icon-color: #666;
   }
 }
 
+@mixin chords-icon($name) {
+  -webkit-mask-image: theme_image($theme-name,  $images_path + $name + ".png");
+}
+
 @include chords-iconmask("home");
 @include chords-iconmask("shuffle");
 @include chords-iconmask("cross");
@@ -164,8 +168,7 @@ p {
     background: #666;
   }
   .x-button-back {
-    content: "BACK"
-    height:1.6 em;
+    height: 1.6em;
     min-height: 1.6em;
     border-radius: 4px;
     background: #000;
@@ -182,4 +185,10 @@ p {
   .x-button-back::before, .x-button-back::after {
     background: #000 !important;
   }
+}
+
+.x-field-search .x-field-input::before {
+  @include chords-icon("search");
+  background: #a2bf67;
+
 }

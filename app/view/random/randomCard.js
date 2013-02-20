@@ -25,8 +25,8 @@ var random = Ext.define( 'chords.view.random.randomCard', {
                 title: '',
                 items: [
                     {xtype: "spacer" },
-                    {xtype: "button", id: "transposeUp", text: 'Transpose up', align: 'right'},
-                    {xtype: "button", id: "transposeDown", text: 'Transpose down', align: 'right'}
+                    { iconCls: 'arrow-up', id: "transposeUp", iconMask: true, align: 'right'} ,
+                    { iconCls: 'arrow-down', id: "transposeDown", iconMask: true, align: 'right'}
                 ]
             },
             {

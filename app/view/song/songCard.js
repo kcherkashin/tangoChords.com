@@ -32,6 +32,7 @@ Ext.define( 'chords.view.song.songCard', {
                 docked: 'top',
                 xtype: 'searchfield',
                 label: Ext.os.deviceType === "Phone" ? '' : 'Filter',
+                placeHolder: 'Search',
                 name: 'query'
             },
             {
