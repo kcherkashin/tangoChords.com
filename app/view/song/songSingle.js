@@ -13,13 +13,9 @@ Ext.define( 'chords.view.song.songSingle', {
         xtype: 'songsingle',
         requires: ["chords.components.chordsManager"],
 
-        initialize: function () {
-            this.config.tpl.parent = this;
-        },
         transpose: function ( steps ) {
             this.fireEvent( "transposeSong", steps, this );
         },
-
 
         config: {
             scrollable: 'vertical',

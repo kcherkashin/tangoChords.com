@@ -27,7 +27,7 @@ var app = Ext.application( {
     models: ['song'],
     views: ['Main'],
     stores: ['songs'],
-    controllers: ['songCard', 'randomCard', 'songSingle', 'filterCard', 'main'],
+    controllers: ['songCard', 'songSingle', 'filterCard', 'main'],
 
     icon: {
         '57': 'resources/icons/Icon.png',

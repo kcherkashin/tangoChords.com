@@ -67,24 +67,18 @@ Ext.define( 'chords.controller.songCard', {
     },
 
     openSongCard: function () {
-
         var songCard = this.getSongCard();
         if( songCard ) {
             songCard.pop();
             this.getSongCard().getNavigationBar().hide();
         }
-
-    },
-
-    activeSongCard: function () {
-        return this.getSongCard().query( 'songsingle' )[0];
     },
 
     transposeUp: function () {
-        this.activeSongCard().transpose( 1 );
+        this.getSongSingle().transpose( 1 );
     },
     transposeDown: function () {
-        this.activeSongCard().transpose( -1 );
+        this.getSongSingle().transpose( -1 );
     },
     showSongsList: function () {
         this.getFilter().show();
