@@ -26,6 +26,11 @@ Ext.define( 'chords.view.song.songCard', {
                 { iconCls: 'arrow-up', iconMask: true, align: 'right', id: 'transposeDown'}
             ]
         },
+
+
+        layout: {
+            animation: false
+        },
         cls: 'songGrid',
         tab: {
             iconCls: 'home',
