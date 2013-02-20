@@ -30,16 +30,23 @@ Ext.define( 'chords.store.songs', {
             this.shuffledItems[j] = temp;
         }
     },
+
+    getRandomId: function () {
+        if( this.shuffledItems === null || !this.shuffledItems.length) {
+            this.shuffle();
+        }
+        return this.shuffledItems.pop();
+    },
+
     /**
      * Pulls random item.
      *
      */
     getRandomItem: function () {
-        if( this.shuffledItems === null ) {
-            this.shuffle();
-        }
-
-        return this.data.items[ this.shuffledItems.pop() ];
+        var randomId = this.getRandomId();
+        var item = this.data.items[ randomId ];
+        item["id"] = randomId;
+        return item;
     },
 
     /**
@@ -47,10 +54,11 @@ Ext.define( 'chords.store.songs', {
      * If the store has been loaded, the call get executed immediately
      */
     whenLoaded: function ( callback ) {
+
         if( !this.loaded ) {
             this.on( "load", callback.bind( this ) );
         } else {
-            callback( this );
+            callback.call( this, this );
         }
     },
 

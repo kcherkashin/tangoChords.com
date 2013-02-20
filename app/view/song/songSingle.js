@@ -24,14 +24,14 @@ Ext.define( 'chords.view.song.songSingle', {
         config: {
             scrollable: 'vertical',
             tpl: new Ext.XTemplate(
-                '<pre class = "info song chords">',
-                Ext.os.deviceType === "Phone" ? '<h1>{title}</h1>' : '',
+                '<h1 class = "song-title">{title}</h1>',
+                '<pre class = "cong-chords">',
                 '{[this.wrapChords(values.text)]}',
                 '<a href="http://{source}">{source}</a>',
                 '</pre>',
                 {
                     wrapChords: function ( text ) {
-                        return chords.components.chordsManager.wrapChords( text, 50 );
+                        return chords.components.chordsManager.wrapChords( text, 40 );
                     }
                 }
             )

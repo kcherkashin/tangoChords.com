@@ -211,32 +211,13 @@ Ext.define( 'chords.controller.songSingle', {
      * @param index
      */
     createSong: function ( callback, song, index ) {
-
         var store = Ext.getStore( "songs" );
-
-
-        /**
-         * If the song was not provided, we just create a new instance.
-         */
-        song = song || Ext.create( 'chords.view.song.songSingle' );
-
-
         store.whenLoaded( function ( store ) {
-            /**
-             * If record index was not provided, we just take random item from the store.
-             */
-            var record;
-            if( typeof index === "undefined" ) {
-                record = store.getRandomItem();
-            } else {
-                record = store.getAt( index );
-            }
-
+            var record = store.getAt( index );
             song.setRecord( record );
             song.on( "transposeSong", this.transposeSong, this );
             song.element.on( "tap", this.displayChord, this );
-
-            song.config.title = Ext.os.deviceType === "Phone" ? "" : record.data.title;
+            song.config.title = "";
             callback( song );
             this.autoTranspose( song );
 

@@ -33,11 +33,11 @@ describe( "Songs store", function () {
         }
     } );
 
-    it( "Gets random items and when all items are gone, returns undefined", function () {
+    it( "Gets random items and when all items are gone, starts over", function () {
         for( var i = 0, l = this.store.data.items.length; i < l; i++ ) {
             this.store.getRandomItem();
         }
-        expect( this.store.getRandomItem() ).toBeUndefined();
+        expect( this.store.getRandomItem() ).toBeDefined();
     } );
 
     it( "Can be shuffled restarted after all items are gone", function () {
@@ -45,8 +45,7 @@ describe( "Songs store", function () {
             this.store.getRandomItem();
         }
         this.store.shuffle();
-        console.log( this.store.getRandomItem()  );
-        expect( this.store.getRandomItem() ).not.toBeUndefined();
+        expect( this.store.getRandomItem() ).toBeDefined();
     } );
 
 } );

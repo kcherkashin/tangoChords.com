@@ -11,7 +11,6 @@ Ext.define( 'chords.view.song.songCard', {
     xtype: 'songcard',
     id: 'songCard',
 
-
     requires: [
         "Ext.field.Search",
         "Ext.dataview.List",

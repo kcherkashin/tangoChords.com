@@ -13,17 +13,10 @@ $tab-icon-color: #666;
 //@include pictos-iconmask('info');
 
 @include sencha-tabbar-ui('chordsTabPanel', #e6e6e6, 'flat', #ccc);
-
-// You may remove any of the following modules that you
-// do not use in order to create a smaller css file.
 @include sencha-panel;
 @include sencha-buttons;
-//@include sencha-sheet;
-//@include sencha-picker;
 @include sencha-tabs;
 @include sencha-toolbar;
-//@include sencha-toolbar-forms;
-//@include sencha-indexbar;
 @include sencha-list;
 @include sencha-layout;
 @include sencha-carousel;
@@ -41,7 +34,9 @@ $tab-icon-color: #666;
 }
 
 @mixin chords-icon($name) {
+  -webkit-mask-repeat: no-repeat;
   -webkit-mask-image: theme_image($theme-name,  $images_path + $name + ".png");
+
 }
 
 @include chords-iconmask("home");
@@ -89,19 +84,20 @@ $tab-icon-color: #666;
   font-weight: 400 !important;
 }
 
-.info h1 {
-  margin: 5px 0 15px;
-  font-size: 120%;
-  color: #2266ff !important;
-  font-weight: bold;
+h1.song-title {
+  text-align: center;
+  margin: 0 auto;
+  color: #000 !important;
+  outline: 1px #fff solid;
+  border-bottom: 1px #dedede solid;;
+  font-weight: 400;
+  padding: 10px 15px;
+  color: #000;
+  font-size: 1.1em;
+  background: #f5f5f5;
 }
 
 /*.......| Chords                      |.......................*/
-.chord {
-  color: #004;
-  border-bottom: 1px #004 dotted;
-  cursor: pointer;
-}
 
 .chord-diagram {
   letter-spacing: 1.5px;
@@ -121,11 +117,26 @@ p {
 }
 
 .chordLine {
+  background-color: #f5f5f5;
   padding: 7px 15px;
+  border-bottom: 1px #fff solid;
+  border-top: 1px #dedede solid;
+}
+
+.chords {
+  margin-bottom: 7px;
+  margin-top: 5px;
+  cursor: pointer;
+
+  .chord {
+    margin-left: -10px;
+    padding: 2px 7px;
+    background: #ffda24;
+  }
 }
 
 .chordLine:nth-child(2n) {
-  background-color: #fffff9;
+  background-color: #e6e6e6
 }
 
 .x-tabbar.x-docked-bottom .x-tab {
@@ -145,7 +156,7 @@ p {
   border-top: 1px #d9501d solid !important;
   .x-button-icon {
     background: $tab-icon-color;
-    margin-top: 8px;
+    margin-top: 0px;
   }
   .x-button-label {
     display: none;
@@ -168,11 +179,22 @@ p {
   .x-button-back.x-button-pressing {
     background: #666;
   }
+
+  .x-pack-start {
+    margin: 0
+  }
   .x-button-back {
-    height: 1.6em;
-    min-height: 1.6em;
-    border-radius: 4px;
-    background: #000;
+    @include chords-icon("cross");
+
+    overflow: hidden;
+    text-indent: 100%;
+    max-width: 40px !important;
+    margin: 0;
+    height: 2.6em;
+    min-height: 2.6em;
+    border-radius: 0px;
+    background: #000 !important;
+    border-right: 1px solid #ba4217;
 
   }
   .x-button-label {
@@ -180,11 +202,14 @@ p {
   }
 
   .x-button-back.x-button-pressing::before, .x-button-back.x-button-pressing::after {
-    background: #666 !important;
+    background: #000 !important;
+    color: #fff;
+    width: 0 !important;
 
   }
   .x-button-back::before, .x-button-back::after {
-    background: #000 !important;
+    background: $base_color !important;
+    width: 0 !important;
   }
 }
 

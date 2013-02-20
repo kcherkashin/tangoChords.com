@@ -26,16 +26,11 @@ Ext.define( 'chords.controller.songCard', {
 
         routes: {
             'Songs/:id/:songName': 'displaySong',
-            'Random': 'showRandomSong'
+            'Songs': 'openSongCard',
+            'Random': 'goToRandomSong'
         },
 
         control: {
-            randomCardTab: {
-                tap: 'getRandomSong'
-            },
-            songCardTab: {
-                tap: 'openSongCard'
-            },
             songLists: {
                 itemtap: 'navigateToSong'
             },
@@ -47,21 +42,23 @@ Ext.define( 'chords.controller.songCard', {
         }
     },
 
-    showRandomSong: function () {
-        this.redirectTo("Songs/2/2");
-        console.log( "SRS" );
+    goToRandomSong: function () {
+        var me = this;
+        Ext.getStore( "songs" ).whenLoaded( function () {
+                var item = this.getRandomItem();
+
+                me.redirectTo( 'Songs/' + item.id + '/' + item.data.name )
+            }
+        );
+
+
     },
 
-    getRandomSong: function () {
-        this.redirectTo("Songs/2/2");
-
-        console.log( 'GRS' );
-    },
     /**
      * We want to hide navigation bar
      */
     hideNavBar: function ( songCard ) {
-        songCard.getNavigationBar().hide();
+        //    songCard.getNavigationBar().hide();
 
     },
     showNavBar: function () {
@@ -80,7 +77,6 @@ Ext.define( 'chords.controller.songCard', {
     },
 
     activeSongCard: function () {
-        console.log( this.getSongCard().query( 'songsingle' ) );
         return this.getSongCard().query( 'songsingle' )[0];
     },
 
@@ -135,13 +131,11 @@ Ext.define( 'chords.controller.songCard', {
         /**
          * We want to switch to the SongCard tab first .
          */
-        console.log( "SA" );
         tabPanel.setActiveItem( tabPanel.innerIndexOf( this.getSongCard() ) );
         this.displayTransposeButtons();
         this.getApplication().getController( 'songSingle' ).createSong( function ( song ) {
-                tabPanel.getActiveItem().push( song );
-            }, songSingle, index
-        );
+            this.getSongCard().push( song );
+        }.bind( this ), songSingle, index );
 
 
     }

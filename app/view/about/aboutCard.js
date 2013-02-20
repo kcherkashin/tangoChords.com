@@ -21,6 +21,7 @@ Ext.define( 'chords.view.about.aboutCard', {
         scrollable: 'vertical',
 
         tab: {
+            id: 'aboutCardTab',
             iconCls: 'cross',
             title: 'about'
         }
