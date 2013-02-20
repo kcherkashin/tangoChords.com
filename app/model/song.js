@@ -56,7 +56,6 @@
                     name: 'genreShort',
                     convert: function ( v, record ) {
                         var genre = record.data.genre || 'Tango';
-                        console.log( genre );
                         return  genre.substr( 0, 1 ).toUpperCase();
 
                     }

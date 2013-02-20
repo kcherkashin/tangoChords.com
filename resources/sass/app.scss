@@ -45,43 +45,45 @@ $tab-icon-color: #666;
 @include chords-iconmask("arrow-up");
 @include chords-iconmask("arrow-down");
 
-/**
- * For some weird reason we can't use itemHeight for the grid, or $global-row-height, so will have to do it manually.
- * TODO: Figure that out
- */
-
+/*.......| Grid                        |.......................*/
 .x-container.songGrid {
   .x-dock-body {
-    x-grid-cell {
+    /**
+    * For some weird reason we can't use itemHeight for the grid, or $global-row-height, so will have to do it manually.
+    * TODO: Figure that out
+    */
+
+    .x-grid-cell, .x-dock-horizontal {
       height: 2.2em;
       min-height: 2.2em;
       line-height: 2.2em;
+      padding: 0 5px;
       text-align: left !important;
     }
+
+    .x-grid-cell-hd {
+      padding: 0 10px !important;
+    }
   }
-}
-.x-container.songGrid .x-dock-body .x-stretched,
-.x-container.songGrid .x-dock-body .x-grid-cell {
+  .x-list-item-body {
+    .x-grid-cell {
+      border-bottom: 1px #fff solid;
+      border-left: 1px #d9d9d9 solid;
+      background: #f3f3f3 !important;
+      &.genreColumn {
+        text-align: center !important;
+      }
+    }
+  }
 
+  .x-list-item:nth-child(odd) {
+    .x-grid-cell {
+      border-bottom: 1px #fff solid;
+      border-left: 1px #d9d9d9 solid;
+      background: #fff !important;
+    }
+  }
 
-}
-
-.x-container.songGrid .x-list-item-body .x-grid-cell {
-  border-bottom: 1px #fff solid;
-  border-left: 1px #d9d9d9 solid;
-  background: #fefefe;
-
-}
-
-.x-container.songGrid .x-list-item:nth-child(2n) .x-grid-cell {
-  border-bottom: 1px #fff solid;
-  border-left: 1px #d9d9d9 solid;
-  background: #f5f5f5;
-
-}
-
-.x-container.songGrid .x-dock-body  .x-grid-cell-hd {
-  padding: 0 10px !important;
 }
 
 /*.......| Generic Stuff               |.......................*/

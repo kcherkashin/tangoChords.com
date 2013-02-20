@@ -50,13 +50,11 @@ Ext.define( 'chords.view.song.songCard', {
                     {
                         header: 'Name',
                         dataIndex: 'name',
-                        style: 'padding: 0 5px;',
                         width: '40%'
                     },
                     {
                         header: 'Performer',
                         dataIndex: 'performer',
-                        style: 'padding: 0 5px;',
                         width: '50%'
                     },
                     {
@@ -65,7 +63,7 @@ Ext.define( 'chords.view.song.songCard', {
                             return '<span class = "genre ' + record.genre.toLowerCase() + '">' + genre + '</span>';
                         },
                         dataIndex: 'genreShort',
-                        style: 'padding: 0 5px;text-align:center;',
+                        cls: 'genreColumn',
                         width: '10%'
                     }
                 ],

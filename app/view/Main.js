@@ -21,13 +21,9 @@ Ext.define( 'chords.view.Main', {
     ],
 
     config: {
+        cardSwitchAnimation: false,
         tabBarPosition: 'bottom',
-        tabBar: {
-            layout: {
-                type: 'hbox',
-                pack: 'center'
-            }
-        },
+        
         ui: 'chordsTabPanel',
 
         items: [
