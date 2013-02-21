@@ -26,8 +26,6 @@ Ext.define( 'chords.view.song.songCard', {
                 { iconCls: 'arrow-up', iconMask: true, align: 'right', id: 'transposeDown'}
             ]
         },
-
-
         layout: {
             animation: false
         },
@@ -38,13 +36,11 @@ Ext.define( 'chords.view.song.songCard', {
             title: 'Songs'
         },
         items: [
-
             {
                 docked: 'top',
                 xtype: 'searchfield',
                 label: Ext.os.deviceType === 'Phone' ? '' : 'Filter',
-                placeHolder: 'Search',
-                name: 'query'
+                placeHolder: 'Search'
             },
             {
                 store: 'songs',
@@ -77,8 +73,8 @@ Ext.define( 'chords.view.song.songCard', {
                         ftype: 'Ext.ux.touch.grid.feature.Sorter',
                         launchFn: 'initialize'
                     }
-                ],
-                title: 'Tango chords for guitar'
+                ]
+
 
             }
         ]

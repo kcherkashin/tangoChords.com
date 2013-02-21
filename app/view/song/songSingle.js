@@ -13,15 +13,9 @@ Ext.define( 'chords.view.song.songSingle', {
         xtype: 'songsingle',
 
         requires: ["chords.components.chordsManager"],
-
         transpose: function ( steps ) {
             this.fireEvent( "transposeSong", steps, this );
         },
-        applyRecord: function ( record ) {
-
-            return record;
-        },
-
 
         config: {
             cls: 'single-song',

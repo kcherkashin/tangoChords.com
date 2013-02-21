@@ -13,7 +13,7 @@ var random = Ext.define( 'chords.view.random.randomCard', {
         tab: {
             id: 'randomCardTab',
             iconCls: 'shuffle',
-            'title': 'Random'
+            title: 'Random'
         }
     }
 

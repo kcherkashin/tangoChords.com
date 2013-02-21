@@ -9355,7 +9355,7 @@ input[type="search"]::-webkit-search-cancel-button {
   padding: 7px 15px;
   border-bottom: 1px white solid;
   border-top: 1px #dedede solid;
-  /*...............|                             |...............*/
+  /*...............| Chords                      |...............*/
 }
 .single-song .chordLine:nth-child(2n) {
   background-color: #e6e6e6;

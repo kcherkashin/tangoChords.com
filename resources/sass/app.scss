@@ -8,6 +8,7 @@ $list-row-color: #fff;
 $even-list-row-color: #dedede;
 $line-color: #dedede;
 $even-line-color: #dedede;
+$chord-highlight: #ffda24;
 
 @import 'sencha-touch/default/all';
 @include sencha-tabbar-ui('chordsTabPanel', #e6e6e6, 'flat', #ccc);
@@ -139,7 +140,7 @@ $even-line-color: #dedede;
       .chord {
         margin-left: -10px;
         padding: 2px 7px;
-        background: #ffda24;
+        background: $chord-highlight;
       }
     }
   }
