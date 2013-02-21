@@ -20,8 +20,7 @@ var app = Ext.application( {
         autoMaximize: true
     },
     requires: [
-        'Ext.MessageBox',
-        'Ext.data.Store'
+        'Ext.MessageBox'
     ],
 
     models: ['song'],

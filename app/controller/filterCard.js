@@ -4,7 +4,7 @@
  *
  */
 
-"use strict";
+'use strict';
 
 Ext.define( 'chords.controller.filterCard', {
     extend: 'Ext.app.Controller',
@@ -36,7 +36,7 @@ Ext.define( 'chords.controller.filterCard', {
 
 
     handleFilterQuery: function ( query ) {
-        var search = this.getFilter().getComponent( "Search" );
+        var search = this.getFilter().getComponent( 'Search' );
         var queryFieldValue = search.getValue().toLowerCase();
         if( queryFieldValue !== query ) {
             search.setValue( query );
@@ -68,8 +68,7 @@ Ext.define( 'chords.controller.filterCard', {
      * This is called when user types something in the search field
      */
     updateFilterQuery: function () {
-
-        var query = this.getFilter().getComponent( "Search" ).getValue().toLowerCase();
+        var query = this.getFilter().getComponent( 'Search' ).getValue().toLowerCase();
         if( query.length ) {
             this.redirectTo( 'Filter/' + query );
         } else {

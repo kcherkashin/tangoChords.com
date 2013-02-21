@@ -14,13 +14,11 @@ Ext.define( 'chords.controller.songCard', {
             tabPanel: '#chordsTabPanel',
             songLists: 'list',
             songCard: 'songcard',
-            randomCardTab: '#randomCardTab',
             songSingle: {
                 selector: 'songsingle',
                 xtype: 'songsingle',
                 autoCreate: true
             },
-            songCardTab: '#songCardTab',
             filter: 'searchfield',
             transposeUp: '#transposeUp',
             transposeDown: '#transposeDown'
@@ -56,7 +54,6 @@ Ext.define( 'chords.controller.songCard', {
                 me.redirectTo( 'Songs/' + item.id + '/' + item.data.name )
             }
         );
-
 
     },
 

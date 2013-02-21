@@ -4,14 +4,12 @@
  *
  */
 
-"use strict";
+'use strict';
 (function () {
     /**
      * TODO: Needs testing
      * http://scripterlative.com/files/noaccent.htm
      */
-
-
     var rExps = [
         {re: /[\xC0-\xC6]/g, ch: 'A'},
         {re: /[\xE0-\xE6]/g, ch: 'a'},
@@ -27,6 +25,9 @@
         {re: /[\xF1]/g, ch: 'n'}
     ];
 
+    /**
+     * Turns 'Héctor Mauré' into 'Hector Maure'
+     */
     function stripAccents( str ) {
         for( var i = 0, len = rExps.length; i < len; i++ )
             str = str.replace( rExps[i].re, rExps[i].ch );
@@ -35,15 +36,13 @@
 
     Ext.define( 'chords.model.song', {
         extend: 'Ext.data.Model',
-
         config: {
-
             fields: [
-                "id", "name", "performer", "words", "text", "source",
+                'id', 'name', 'performer', 'words', 'text', 'source',
                 {
                     name: 'title',
                     convert: function ( v, record ) {
-                        return record.data.performer + " - " + record.data.name;
+                        return record.data.performer + ' - ' + record.data.name;
                     }
                 },
 

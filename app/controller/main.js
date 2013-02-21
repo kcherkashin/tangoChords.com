@@ -4,63 +4,24 @@
  *
  */
 
-"use strict";
+'use strict';
+
 Ext.define( 'chords.controller.main', {
     extend: 'Ext.app.Controller',
 
     config: {
         refs: {
-            tabPanel: "#chordsTabPanel",
-            randomTab: '#randomCardTab',
-            songTab: '#songCardTab',
-            aboutCard: '#aboutCardTab'
-        },
-        control: {
-            aboutCard: {
-                tap: 'goToAboutPage'
-            },
-            songTab: {
-                tap: 'goToSongList'
-            },
-            randomTab: {
-                tap: 'goToRandomSong'
-            }
-        },
-        routes: {
-            'About': 'about'
+            tabBar: '#chordsTabPanel tabbar'
         }
     },
 
-
-    goToAboutPage: function () {
-        this.redirectTo( 'About' );
-    },
-    goToSongList: function () {
-        this.redirectTo( 'Songs' );
-    },
-
-    goToRandomSong: function () {
-        this.redirectTo( 'Random' );
-    },
-
-
-    about: function () {
-        this.getTabPanel().setActiveItem( 2 );
-    },
-    random: function () {
-        this.goToRandomSong();
-    },
-
-
     /**
-     * Returns true is the url starts with the tab name. e.g.
-     * url #Songs/songs will return true for "Songs", false for "Filter".
-     *
-     *
+     * Makes each tab redirect to #tab.title on tap
      */
-    isActiveTab: function ( tabName ) {
-        return location.hash.substr( 1 ).indexOf( tabName ) === 0;
+    launch: function () {
+        this.getTabBar().items.each( function ( item ) {
+            item.on( 'tap', this.redirectTo.bind( this, item.getTitle() ) );
+        }, this );
     }
-
 
 } );

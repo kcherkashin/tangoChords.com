@@ -10,22 +10,16 @@ Ext.define( 'chords.view.about.aboutCard', {
     extend: 'Ext.Container',
     xtype: 'aboutcard',
     config: {
-
-        items: [
-            {
-                docked: 'top',
-                xtype: 'toolbar',
-                title: 'About Tango Chords'
-            }
-        ],
+        items: {
+            xtype: 'toolbar',
+            title: 'About Tango Chords'
+        },
         scrollable: 'vertical',
-
         tab: {
             id: 'aboutCardTab',
-            iconCls: 'cross',
-            title: 'about'
+            iconCls: 'about',
+            title: 'About'
         }
-
     },
     initialize: function () {
         Ext.Ajax.request( {

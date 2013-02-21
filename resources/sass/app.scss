@@ -37,11 +37,14 @@ $chord-highlight: #ffda24;
   -webkit-mask-image: theme_image($theme-name,  $images_path + $name + ".png");
 }
 
+@include chords-iconmask("back");
+@include chords-iconmask("autoscroll");
+@include chords-iconmask("down");
 @include chords-iconmask("home");
+@include chords-iconmask("about");
+@include chords-iconmask("search");
 @include chords-iconmask("shuffle");
-@include chords-iconmask("cross");
-@include chords-iconmask("arrow-up");
-@include chords-iconmask("arrow-down");
+@include chords-iconmask("up");
 
 /*.......| Some platform adjustments   |.......................*/
 .x-phone {
@@ -78,13 +81,25 @@ $chord-highlight: #ffda24;
       &.genreColumn {
         text-align: center !important;
         .genre {
-          padding: 4px;
-          border: 1px #333 solid;
+          padding: 0.5em;
+          border: 1px #d9d9d9 solid;
+          width: 1.7em;
+          display: block;
+          height: 1.7em;
+          margin: 0.7em auto;
+          line-height: 0.7em;
+          font-size: 0.8em;
+          color: white;
+
+          
+          &.tango {
+            background: #999;
+          }
           &.vals {
-            background: #cc4;
+            background: #6c9;
           }
           &.milonga {
-            background: #4cc;
+            background: #ff4e00;
           }
 
         }
@@ -180,6 +195,7 @@ $chord-highlight: #ffda24;
 
   border-top: 1px #f00 solid !important;
   .x-button-icon {
+
     background: $tab-icon-color;
     margin-top: 0px;
   }
@@ -191,14 +207,23 @@ $chord-highlight: #ffda24;
 
 /*.......| Top toolbar                 |.......................*/
 .x-toolbar {
+  padding: 0;
   .x-button {
-    border: 0;
     background: transparent;
+    border: 0 solid;
+    border-left: 1px #ba4217 solid;
+
+    margin: 0;
+    border-radius: 0;
+    height: 2.5em;
+    padding: 0.5em 0.8em;
+
     .x-button-icon {
-      -webkit-mask-size: 1.6em;
+      -webkit-mask-size: 1.61em;
       -webkit-mask-repeat: no-repeat;
       width: 1.7em;
       height: 1.7em;
+
     }
   }
 
@@ -209,18 +234,23 @@ $chord-highlight: #ffda24;
   .x-pack-start {
     margin: 0
   }
-  .x-button-back {
-    @include chords-icon("cross");
+  .x-button-back .x-button-icon {
+    @include chords-icon("back");
+    background: #fff !important;
+    -webkit-mask-size: 0.8em 1.20em;
 
+  }
+  .x-button-back {
     overflow: hidden;
     text-indent: 100%;
-    max-width: 40px !important;
-    margin: 0;
-    height: 2.6em;
-    min-height: 2.6em;
     border-radius: 0px;
-    background: #000 !important;
     border-right: 1px solid #ba4217;
+    padding: 5px 15px;
+    .x-button-icon {
+      height: 1.2em !important;
+      border: 1px navy solid !important;
+      width: 1.3em !important;
+    }
 
   }
   .x-button-label {

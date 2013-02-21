@@ -21,9 +21,15 @@ Ext.define( 'chords.view.song.songCard', {
     config: {
 
         navigationBar: {
+            backButton: {
+                iconmask: true,
+                iconCls: 'back'
+
+
+            },
             items: [
-                { iconCls: 'arrow-up', iconMask: true, align: 'right', id: 'transposeUp'},
-                { iconCls: 'arrow-up', iconMask: true, align: 'right', id: 'transposeDown'}
+                { iconCls: 'up', iconMask: true, align: 'right', id: 'transposeUp'},
+                { iconCls: 'down', iconMask: true, align: 'right', id: 'transposeDown'}
             ]
         },
         layout: {
