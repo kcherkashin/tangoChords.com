@@ -14,8 +14,7 @@ Ext.define( 'chords.view.Main', {
     requires: [
         'chords.view.random.randomCard',
         'chords.view.song.songCard',
-        'chords.view.about.aboutCard',
-        'chords.view.filter.filterCard'
+        'chords.view.about.aboutCard'
     ],
 
     config: {
