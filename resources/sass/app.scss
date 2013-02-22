@@ -1,5 +1,5 @@
 $base_color: #ff723d;
-$active-color: #ddd;
+$active-color: #fff;
 $images_path: "../../../../../resources/images/";
 $include-default-icons: false;
 $base_gradient: flat;
@@ -58,18 +58,26 @@ $chord-highlight: #ffda24;
 /*.......| Grid                        |.......................*/
 .x-container.songGrid {
   .x-dock-body {
+    .x-grid-cell {
+      padding: 0 5px !important;
+      font-weight: 400 !important;
+      text-align: left !important;
+    }
+    .x-dock-horizontal {
+      border: 0 solid !important;
+      padding: 0;
+
+    }
     /**
     * For some weird reason we can't use itemHeight for the grid, or $global-row-height, so will have to do it manually.
     * TODO: Figure that out
     */
 
     .x-grid-cell, .x-dock-horizontal {
-      font-weight: 400 !important;
       height: 2.2em;
       min-height: 2.2em;
       line-height: 2.2em;
-      padding: 0 5px;
-      text-align: left !important;
+
     }
 
     .x-grid-cell-hd {
@@ -77,9 +85,11 @@ $chord-highlight: #ffda24;
     }
   }
   .x-list-item-body {
-    .x-grid-cell {
 
-      border-bottom: 1px #fff solid;
+
+    .x-grid-cell {
+      border-top: 1px #dedede solid !important;
+      border-bottom: 1px white solid !important;
       border-left: 1px #d9d9d9 solid;
       background: #f3f3f3 !important;
       &.genreColumn {
@@ -112,8 +122,7 @@ $chord-highlight: #ffda24;
 
   .x-list-item:nth-child(odd) {
     .x-grid-cell {
-      border-bottom: 1px #fff solid;
-      border-left: 1px #d9d9d9 solid;
+
       background: #fff !important;
     }
   }
