@@ -1,5 +1,5 @@
 // Testacular configuration
-// Generated on Thu Feb 07 2013 11:31:19 GMT-0500 (EST)
+// Generated on Thu Feb 21 2013 14:22:59 GMT-0500 (EST)
 
 
 // base path, that will be used to resolve files and exclude
@@ -10,19 +10,17 @@ basePath = '';
 files = [
     JASMINE,
     JASMINE_ADAPTER,
-
-
+    REQUIRE,
+    REQUIRE_ADAPTER,
     'touch/sencha-touch-all.js',
-    'app.js',
-    'tests/extConfig.js',
-    'app/*.js',
-    'app/*/*.js',
-    'app/*/*/*.js',
-    'app/*/*/*/*.js',
-    'tests/specs/*Spec.js',
-    'tests/specs/*/*Spec.js',
-    'tests/specs/*/*/*Spec.js'
-
+    {pattern: 'tests/test-app.js'},
+    {pattern: 'app/*.js'},
+    {pattern: 'app/*/*.js'},
+    {pattern: 'app/*/*/*.js'},
+    {pattern: 'app/*/*/*/*.js'},
+    {pattern: 'tests/specs/*Spec.js'},
+    {pattern: 'tests/specs/*/*Spec.js'},
+    {pattern: 'tests/specs/*/*/*Spec.js'}
 ];
 
 
@@ -34,7 +32,7 @@ exclude = [
 
 // test results reporter to use
 // possible values: 'dots', 'progress', 'junit'
-reporters = ['dots'];
+reporters = ['progress'];
 
 
 // web server port
@@ -66,7 +64,7 @@ autoWatch = true;
 // - Safari (only Mac)
 // - PhantomJS
 // - IE (only Windows)
-browsers = ['Chrome'];
+browsers = ['Chrome', 'Firefox'];
 
 
 // If browser does not capture in given timeout [ms], kill it

@@ -37,6 +37,10 @@ $chord-highlight: #ffda24;
   -webkit-mask-image: theme_image($theme-name,  $images_path + $name + ".png");
 }
 
+@mixin chords-bg-icon($name) {
+  background-image: theme_image($theme-name,  $images_path + $name + ".png");
+}
+
 @include chords-iconmask("back");
 @include chords-iconmask("autoscroll");
 @include chords-iconmask("down");
@@ -90,7 +94,6 @@ $chord-highlight: #ffda24;
           line-height: 0.7em;
           font-size: 0.8em;
           color: white;
-
 
           &.tango {
             background: #999;
@@ -169,8 +172,30 @@ $chord-highlight: #ffda24;
 }
 
 /*.......| About                       |.......................*/
-.about p {
-  margin: 10px 0;
+
+.about-line {
+  background: right no-repeat;
+  @include chords-bg-icon("right");
+  padding: 20px 20px;
+
+  &.about-header {
+    background: #fff;
+
+  }
+  &:nth-child(odd) {
+    background-color: #fff;
+    border-top: 1px #ededed solid;
+  }
+  &:nth-child(even) {
+    background-color: #ededed;
+    border-bottom: 1px #fff solid;
+  }
+  a {
+
+    color: #444;
+
+  }
+
 }
 
 /*.......| Bottom tab bar              |.......................*/

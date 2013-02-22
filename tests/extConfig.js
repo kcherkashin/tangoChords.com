@@ -5,31 +5,21 @@
  */
 
 "use strict";
-/**
- * We have to delay the test until app is loaded
- */
-window.__testacular__.loaded = function () {
-};
 
-/**
- * We need base before the path for testacular
- */
+(function ( testacular, Ext ) {
+
+    // Delaying Testacular start
+    testacular.loaded = Ext.emptyFn;
+
+    // Setting
+    Ext.Loader.setPath( {
+        'chords': 'base/app',
+        'Ext.ux.touch.grid': 'base/app/components/touch.grid'
+    } );
+
+    Ext.onReady( testacular.start );
 
 
-
-
-
-
-Ext.Loader.setPath( {
-    'Ext': 'touch/src',
-    'chords': 'base/app',
-    'Ext.ux.touch.grid': 'base/app/components/touch.grid'
-
-} );
-
-Ext.onReady( function () {
-    window.__testacular__.start();
-} );
-
+}( window.__testacular__, window.Ext ));
 
 

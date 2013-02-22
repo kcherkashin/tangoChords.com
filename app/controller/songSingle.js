@@ -21,12 +21,10 @@ Ext.define( 'chords.controller.songSingle', {
         }
     },
 
-    TRANSPOSE_DELIMITER: '-',
 
     setHandlers: function ( song ) {
         song.on( 'transposeSong', this.transposeSong, this );
         song.element.on( 'tap', this.displayChord, this );
-        this.autoTranspose( song );
 
 
     },
@@ -85,19 +83,6 @@ Ext.define( 'chords.controller.songSingle', {
         }
     }()),
 
-
-    launch: function () {
-
-        var steps = window.location.hash.substr( 1 ).split( this.TRANSPOSE_DELIMITER )[1] || 0;
-        this.autoTranspose = steps ? function ( song ) {
-            this.autoTranspose = Ext.emptyFn;
-            this._transposeSong( steps, song );
-
-
-        }.bind( this ) : Ext.emptyFn;
-        this.fireEvent( 'autoTranspose' );
-
-    },
 
     /**
      * Generates chord diagram.
@@ -181,14 +166,13 @@ Ext.define( 'chords.controller.songSingle', {
 
 
     /**
-     * Adds '+NumberOfTones' to the url
-     * We don't want to push it in the history though.
+     * pushes '/NumberOfTones' to the url
      * @param steps
      */
     updateUrl: function ( steps ) {
-        var link = window.location.hash.substr( 1 ).split( this.TRANSPOSE_DELIMITER );
-        var tones = (+(link[1] || 0) + 12 + steps) % 12;
-        window.location.hash = '#' + link[0] + this.TRANSPOSE_DELIMITER + tones;
+        var link = window.location.hash.split( "/" );
+        link[3] = +steps + (+link[3] || 0 );
+        //window.location.hash = link.join( "/" );
     },
 
     /**
@@ -199,6 +183,8 @@ Ext.define( 'chords.controller.songSingle', {
      * @param singleSong
      */
     transposeSong: function ( steps, singleSong ) {
+        var link = window.location.hash.split( "/" );
+
         this.updateUrl( steps );
         this._transposeSong( steps, singleSong );
     },

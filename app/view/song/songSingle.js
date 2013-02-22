@@ -28,7 +28,7 @@ Ext.define( 'chords.view.song.songSingle', {
                 '</pre>',
                 {
                     wrapChords: function ( text ) {
-                        return chords.components.chordsManager.wrapChords( text, 140 );
+                        return chords.components.chordsManager.wrapChords( text, 40 );
                     }
                 }
             )

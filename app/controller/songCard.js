@@ -26,6 +26,7 @@ Ext.define( 'chords.controller.songCard', {
 
         routes: {
             'Songs/:id/:songName': 'displaySong',
+            'Songs/:id/:songName/:transpose': 'displaySong',
             'Songs': 'openSongCard',
             'Random': 'goToRandomSong'
         },
@@ -88,7 +89,7 @@ Ext.define( 'chords.controller.songCard', {
         this.redirectTo( 'Songs/' + index + '/' + record.data.nameLatin );
     },
 
-    displaySong: function ( index ) {
+    displaySong: function ( index, name, transpose ) {
         var song = this.getSongSingle();
         var tabPanel = this.getTabPanel();
 
@@ -100,6 +101,7 @@ Ext.define( 'chords.controller.songCard', {
         Ext.getStore( 'songs' ).whenLoaded( function ( store ) {
             var record = store.getAt( index );
             song.setRecord( record );
+            song.transpose( transpose || 0);
             this.getSongCard().push( song );
         }.bind( this ) );
 
