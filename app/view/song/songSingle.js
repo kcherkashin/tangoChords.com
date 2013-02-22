@@ -26,7 +26,7 @@ Ext.define( 'chords.view.song.songSingle', {
                 {
                     wrapChords: function ( text ) {
                         // We calculate amount of letters per line depending on the screen size
-                        return chords.components.chordsManager.wrapChords( text, Math.ceil( window.innerWidth / 8 ) );
+                        return chords.components.chordsManager.wrapChords( text, Math.ceil( window.innerWidth / 16 + 19 ) );
                     }
                 }
             )
