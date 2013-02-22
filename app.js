@@ -17,7 +17,9 @@ var app = Ext.application( {
 
     name: 'chords',
     viewport: {
-        autoMaximize: true
+        autoMaximize: true,
+        preventZooming: true
+
     },
     requires: [
         'Ext.MessageBox'

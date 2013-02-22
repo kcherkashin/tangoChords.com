@@ -138,7 +138,6 @@ $chord-highlight: #ffda24;
 /*.......| Single Song                 |.......................*/
 .single-song {
   h1 {
-    text-align: center;
     margin: 0 auto;
     color: #000 !important;
     outline: 1px #fff solid;
@@ -184,7 +183,6 @@ $chord-highlight: #ffda24;
 
 .about-line {
   background: right no-repeat;
-  @include chords-bg-icon("right");
   padding: 20px 20px;
 
   &.about-header {
