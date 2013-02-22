@@ -13,11 +13,8 @@ Ext.define( 'chords.view.song.songSingle', {
         xtype: 'songsingle',
 
         requires: ["chords.components.chordsManager"],
-        transpose: function ( steps ) {
-            this.fireEvent( "transposeSong", steps, this );
-        },
-
         config: {
+
             cls: 'single-song',
             scrollable: 'vertical',
             tpl: new Ext.XTemplate(
@@ -28,7 +25,7 @@ Ext.define( 'chords.view.song.songSingle', {
                 '</pre>',
                 {
                     wrapChords: function ( text ) {
-                        // We calculate amount of letter per line depending on the screen size
+                        // We calculate amount of letters per line depending on the screen size
                         return chords.components.chordsManager.wrapChords( text, Math.ceil( window.innerWidth / 8 ) );
                     }
                 }

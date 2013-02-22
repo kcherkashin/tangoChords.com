@@ -70,11 +70,25 @@ Ext.define( 'chords.controller.songCard', {
         songCard.getNavigationBar().hide();
     },
 
+    /**
+     * The link format is Songs/{SongID}/{SongName}/{Steps}.
+     *
+     * We take fourth parameter and increase/decrease it.
+     */
+    updateTonalityUrl: function ( steps ) {
+        var link = window.location.hash.substr( 1 ).split( "/" );
+        /**
+         * Transposing to -1 is the same as transposing to 11
+         */
+        link[3] = (steps + 12 + (+link[3] || 0 )) % 12;
+        this.redirectTo( link.join( "/" ) );
+    },
+
     transposeUp: function () {
-        this.getSongSingle().transpose( 1 );
+        this.updateTonalityUrl( 1 )
     },
     transposeDown: function () {
-        this.getSongSingle().transpose( -1 );
+        this.updateTonalityUrl( -1 )
     },
     showSongsList: function () {
         this.getFilter().show();
@@ -89,19 +103,18 @@ Ext.define( 'chords.controller.songCard', {
         this.redirectTo( 'Songs/' + index + '/' + record.data.nameLatin );
     },
 
-    displaySong: function ( index, name, transpose ) {
+    displaySong: function ( index ) {
         var song = this.getSongSingle();
         var tabPanel = this.getTabPanel();
-
         /**
          * We want to switch to the SongCard tab first .
          */
         tabPanel.setActiveItem( tabPanel.innerIndexOf( this.getSongCard() ) );
 
         Ext.getStore( 'songs' ).whenLoaded( function ( store ) {
-            var record = store.getAt( index );
-            song.setRecord( record );
-            song.transpose( transpose || 0);
+            // Force re-render
+            song.setRecord();
+            song.setRecord( store.getAt( index ) );
             this.getSongCard().push( song );
         }.bind( this ) );
 

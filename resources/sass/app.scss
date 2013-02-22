@@ -165,7 +165,9 @@ $chord-highlight: #ffda24;
       cursor: pointer;
 
       .chord {
+        margin-right: 10px !important;
         margin-left: -10px;
+
         padding: 2px 7px;
         background: $chord-highlight;
       }

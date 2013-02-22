@@ -45,7 +45,12 @@ Ext.define( "chords.components.chordsManager", {
      * @param line
      */
     wrapChordsInLine: function ( line ) {
-        return (line + " ").replace( this.regex.chord, "<span class = 'chord'>$1</span> " );
+        var link = window.location.hash.split( "/" );
+        var transposeTones  = link[3] || 0;
+        return (line + " ").replace( this.regex.chord, function ( full, chord ) {
+            chord = this.transposeChord( chord, +transposeTones );
+            return '<span class = "chord">' + chord + '</span>';
+        }.bind( this ) );
     },
 
 

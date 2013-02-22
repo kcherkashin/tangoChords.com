@@ -15,73 +15,15 @@ Ext.define( 'chords.controller.songSingle', {
         },
         control: {
             song: {
-                'transpose': 'transpose',
                 'initialize': 'setHandlers'
             }
         }
     },
 
-
     setHandlers: function ( song ) {
-        song.on( 'transposeSong', this.transposeSong, this );
         song.element.on( 'tap', this.displayChord, this );
 
-
     },
-
-    /**
-     * Transposes chord.
-     * C -> C#
-     * C#m -> D
-     *
-     * This is a real basic function, which doesn't know anything about tonalities and bemols.
-     *
-     * @returns Function
-     */
-    transposeChord: (function () {
-
-
-        /**
-         * This is a regex for the main Note of the chord.
-         * e.g. A, A#, F
-         * but not Z, @
-         */
-        var noteRegex = /([A-H]\#?)/g;
-        /**
-         * We need this index to figure out which note comes after which.
-         */
-        var noteIndex = ['A', 'A#', 'H', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'];
-
-        /**
-         * We need this index to find position of the note.
-         */
-        var reverseIndex = {};
-        for( var i = 0, l = noteIndex.length; i < l; i++ ) {
-            reverseIndex[noteIndex[i]] = i;
-        }
-
-        /**
-         * Some synonyms also go here.
-         */
-        reverseIndex['B'] = 2;
-        reverseIndex['B#'] = 3;
-        reverseIndex['H#'] = 3;
-        reverseIndex['E#'] = 8;
-
-
-        return function ( chord, steps ) {
-            steps = +steps;
-            return  chord.replace( noteRegex, function ( note ) {
-                if( !note || typeof reverseIndex[note] === 'undefined' ) {
-                    return 'Can\'t transpose chord \'' + chord + '\'';
-                }
-
-                var newIndex = (reverseIndex[note] + steps + 12) % 12;
-                return noteIndex[ newIndex];
-            } );
-
-        }
-    }()),
 
 
     /**
@@ -147,8 +89,6 @@ Ext.define( 'chords.controller.songSingle', {
         }
 
         return '<pre class = "chord-diagram">' + chord + '</pre>';
-
-
     },
 
     /**
@@ -162,64 +102,7 @@ Ext.define( 'chords.controller.songSingle', {
             chordName = target.innerHTML;
             Ext.Msg.alert( 'Chord ' + chordName, this.generateChordDiagram( chordName ), Ext.emptyFn );
         }
-    },
-
-
-    /**
-     * pushes '/NumberOfTones' to the url
-     * @param steps
-     */
-    updateUrl: function ( steps ) {
-        var link = window.location.hash.split( "/" );
-        link[3] = +steps + (+link[3] || 0 );
-        //window.location.hash = link.join( "/" );
-    },
-
-    /**
-     * Transposes opened song.
-     *
-     *
-     * @param steps
-     * @param singleSong
-     */
-    transposeSong: function ( steps, singleSong ) {
-        var link = window.location.hash.split( "/" );
-
-        this.updateUrl( steps );
-        this._transposeSong( steps, singleSong );
-    },
-
-    _transposeSong: function ( steps, singleSong ) {
-        var chordNodes = singleSong.element.dom.querySelectorAll( '.chord' );
-
-        for( var i = 0, l = chordNodes.length; i < l; i++ ) {
-            chordNodes[i].innerHTML = this.transposeChord( chordNodes[i].innerHTML, steps );
-        }
-    },
-
-
-    /**
-     * Creates a songSingle panel ( or use the one provided ), sets record for it and returns
-     *
-     * @param callback
-     * @param song
-     * @param index
-     */
-    createSong: function ( callback, song, index ) {
-        var store = Ext.getStore( 'songs' );
-        store.whenLoaded( function ( store ) {
-            var record = store.getAt( index );
-            song.setRecord( record );
-            song.config.title = '';
-            callback( song );
-
-
-        }.bind( this ) );
-
-
     }
-
-
 
 
 
