@@ -28,6 +28,7 @@ Ext.define( 'chords.controller.songCard', {
             'Songs/:id/:songName': 'displaySong',
             'Songs/:id/:songName/:transpose': 'displaySong',
             'Songs': 'openSongCard',
+            '': 'openSongCard',
             'Random': 'goToRandomSong'
         },
 

@@ -80,12 +80,7 @@ Ext.define( 'chords.view.song.songCard', {
                         launchFn: 'initialize'
                     }
                 ]
-
-
             }
         ]
     }
-
-
-
 } );
